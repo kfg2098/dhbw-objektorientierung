@@ -68,7 +68,7 @@ public:
 			0.5, 0.5, //Position der "Mitte" in realtiv zu x,y -->0|0 ist oben links 0.5|0.5 ist mitte des Bildes
 			0.5,0.4 //Verhältnis zum Kleiner machen 0.4= 40% des Ursprünglichen
 		);
-		bild.draw_rot(pos_p2_x, pos_p2_y, 0.0,
+		oberschmidt.draw_rot(pos_p2_x, pos_p2_y, 0.0,
 			0,//Rotationswinkel
 			0.5, 0.5, //Position der "Mitte" in realtiv zu x,y -->0|0 ist oben links 0.5|0.5 ist mitte des Bildes
 			0.5, 0.4 //Verhältnis zum Kleiner machen 0.4= 40% des Ursprünglichen
@@ -77,11 +77,11 @@ public:
 		bild_hg.draw_rot(0, 0, -10, 0, 0, 0); //Hintergrund Zpos -10 als unterstes Bild
 		
 		//Lebensanzeige Student
-		Gosu::Graphics::draw_rect(400, 15, 200, 30, Gosu::Color::GRAY, 1);
-		Gosu::Graphics::draw_rect(400, 15, leben_p1, 30, Gosu::Color::GREEN, 2);
+		Gosu::Graphics::draw_rect(400, 20, 200, 30, Gosu::Color::GRAY, 1);
+		Gosu::Graphics::draw_rect(400, 20, leben_p1, 30, Gosu::Color::GREEN, 2);
 		//Lebensanzeige Dozent
-		Gosu::Graphics::draw_rect(1250, 15, -200, 30, Gosu::Color::GRAY, 1);
-		Gosu::Graphics::draw_rect(1250, 15, -leben_p2, 30, Gosu::Color::GREEN, 2);
+		Gosu::Graphics::draw_rect(1250, 20, -200, 30, Gosu::Color::GRAY, 1);
+		Gosu::Graphics::draw_rect(1250, 20, -leben_p2, 30, Gosu::Color::GREEN, 2);
 		
 	};
 
