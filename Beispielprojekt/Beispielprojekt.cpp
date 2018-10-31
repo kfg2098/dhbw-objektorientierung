@@ -6,10 +6,6 @@
 #include <vector>
 #include <string>
 #include <iostream>
-
-#include "Planet.h"
-#include "Vektor2d.h"
-
 #include <cstdint>
 #include <memory>
 #include <cassert>
@@ -44,9 +40,11 @@ class GameWindow : public Gosu::Window
 	int pos_p2_y = 900;
 	const int speed = 5;
 
+	int rot=0;
+
 //-------------------------------------------------------
 public:
-	Gosu::Image bild, bild_hg;
+	Gosu::Image bild, bild_hg,buch;
 	//Gosu::Font font;
 	GameWindow()
 		: Window(windowwidth, windowheight)
@@ -54,7 +52,7 @@ public:
 		//,font(20)
 		
 	{
-		set_caption("Keller is coming!");
+		set_caption("Lern oder stirb!");
 
 	}
 
@@ -65,13 +63,15 @@ public:
 	
 	void draw() override
 	{
+		
+
 		bild.draw_rot(pos_p1_x+bild.width()/2, pos_p1_y+bild.height()/2, 0.0,
 			0,//Rotationswinkel
 			0.5, 0.5, //Position der "Mitte" in realtiv zu x,y -->0|0 ist oben links 0.5|0.5 ist mitte des Bildes
 			0.5,0.4 //Verhältnis zum Kleiner machen 0.4= 40% des Ursprünglichen
 		);
 
-		bild_hg.draw_rot(0, 0, -10, 0, 0, 0);
+		bild_hg.draw_rot(0, 0, -10, 0, 0, 0); //Hintergrund Zpos -10 als unterstes Bild
 		
 
 		
@@ -87,6 +87,10 @@ public:
 	{
 		x = input().mouse_x();
 		y = input().mouse_y();
+
+		
+		
+		
 
 		//Tastenabfrage
 		if (input().down(Gosu::ButtonName::KB_ESCAPE))//schließt, wenn ESC gedrückt wurde
