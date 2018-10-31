@@ -40,8 +40,6 @@ class GameWindow : public Gosu::Window
 	int pos_p2_y = 900;
 	const int speed = 5;
 
-	int rot=0;
-
 //-------------------------------------------------------
 public:
 	Gosu::Image bild, bild_hg,buch;
