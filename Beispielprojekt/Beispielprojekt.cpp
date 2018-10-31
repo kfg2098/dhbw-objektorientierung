@@ -21,16 +21,37 @@ using namespace std;
 // Simulationsgeschwindigkeit
 const double DT = 100.0;
 
-int windowheight = 720;
-int windowwidth = 1280;
+int windowheight =900;
+int windowwidth = 1600;
+int pos_kontrolle_y(int i);
+int pos_kontrolle_x(int i);
+
+//---------------------------------------------------------------------------------
 
 class GameWindow : public Gosu::Window
 {
+//-----------------------Globale Variablen----------------
+	double x = 0;
+	double y = 0;
+	bool space = false;
+	bool hoch = false;
+	bool runter = false;
+	bool rechts = false;
+	bool links = false;
+	int pos_p1_x = 0;
+	int pos_p1_y = 0;
+	int pos_p2_x = 1600;
+	int pos_p2_y = 900;
+	const int speed = 5;
+
+//-------------------------------------------------------
 public:
 	Gosu::Image bild;
+	//Gosu::Font font;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		,bild("Kack.png")
+		, bild("Kack.png")
+		//,font(20)
 		
 	{
 		set_caption("Keller is coming!");
@@ -44,28 +65,20 @@ public:
 	
 	void draw() override
 	{
-		bild.draw_rot(x+bild.width()/2, y+bild.height()/2, 0.0,
-			y-x,//Rotationswinkel
+		bild.draw_rot(pos_p1_x+bild.width()/2, pos_p1_y+bild.height()/2, 0.0,
+			0,//Rotationswinkel
 			0.5, 0.5, //Position der "Mitte" in realtiv zu x,y -->0|0 ist oben links 0.5|0.5 ist mitte des Bildes
 			0.5,0.4 //Verhältnis zum Kleiner machen 0.4= 40% des Ursprünglichen
 		);
 
-		graphics().draw_rect(0, 0, windowwidth, windowheight, Gosu::Color::WHITE, -1); //HG
+		//font.draw("Hallo", 100, 100, 0);
 		
-		/*
-		graphics().draw_line(				//Linie zeichnen funktion
-			10, 20, Gosu::Color::RED,		//Startpunkt der Linie mit Farbe
-			200, 100, Gosu::Color::GREEN,	//Endpunkt der Linie mit Farbe--> Farbverlauf
-			0.0
-		);
-		*/
-
-		//graphics().draw_triangle(30,x,Gosu::Color::GREEN,y,100, Gosu::Color::RED,x,y, Gosu::Color::BLUE,0.0);
-		//graphics().draw_quad(100, 100, Gosu::Color::BLUE,100, 200, Gosu::Color::YELLOW,300, 300, Gosu::Color::CYAN,300,400,Gosu::Color::RED,0.0);
-		//graphics().draw_rect(400,300,y,y,Gosu::Color::CYAN,0.0);
 		
 
-		Gosu::Graphics::draw_line(0, 20, Gosu::Color::RED,1280, 20, Gosu::Color::GREEN,0.0);
+		
+		
+
+		/*Gosu::Graphics::draw_line(0, 20, Gosu::Color::RED,1280, 20, Gosu::Color::GREEN,0.0);
 
 		if (space)
 		{
@@ -84,18 +97,12 @@ public:
 		if (runter)
 		{
 			graphics().draw_rect(200, 200, 200, 200, Gosu::Color::GREEN, 0.0);
-		}
+		}*/
 	};
 
 	
 
-	double x = 0;
-	double y = 0;
-	bool space = false;
-	bool hoch = false;
-	bool runter = false;
-	bool rechts = false;
-	bool links = false;
+	
 
 
 	// Wird 60x pro Sekunde aufgerufen
@@ -109,16 +116,60 @@ public:
 		{ 
 			close();
 		}
-
+		//Steuerung Spieler Dozent
+		if (input().down(Gosu::ButtonName::KB_UP))
+		{
+			pos_p1_y = pos_p1_y - speed;
+			pos_kontrolle_y(pos_p1_y);
+		}
+		if (input().down(Gosu::ButtonName::KB_DOWN))
+		{
+			pos_p1_y = pos_p1_y + speed;
+			pos_kontrolle_y(pos_p1_y);
+		}
+		if (input().down(Gosu::ButtonName::KB_LEFT))
+		{
+			pos_p1_x = pos_p1_x - speed;
+			pos_kontrolle_x(pos_p1_x);
+		}
+		if (input().down(Gosu::ButtonName::KB_RIGHT))
+		{
+			pos_p1_x = pos_p1_x + speed;
+			pos_kontrolle_x(pos_p1_x);
+		}
+		//Steuerung Spieler Student
+		if (input().down(Gosu::ButtonName::KB_UP))
+		{
+			pos_p2_y = pos_p2_y - speed;
+			pos_kontrolle_y(pos_p2_y);
+		}
+		if (input().down(Gosu::ButtonName::KB_DOWN))
+		{
+			pos_p2_y = pos_p2_y + speed;
+			pos_kontrolle_y(pos_p2_y);
+		}
+		if (input().down(Gosu::ButtonName::KB_LEFT))
+		{
+			pos_p2_x = pos_p2_x - speed;
+			pos_kontrolle_x(pos_p2_x);
+		}
+		if (input().down(Gosu::ButtonName::KB_RIGHT))
+		{
+			pos_p2_x = pos_p2_x + speed;
+			pos_kontrolle_x(pos_p2_x);
+		}
+		//
+		/*
 		space = input().down(Gosu::KB_SPACE); //Abfrage ob Space gedrückt ist, wenn ja siehe draw Methode
 		hoch = input().down(Gosu::KB_UP);
 		runter = input().down(Gosu::KB_DOWN);
 		rechts = input().down(Gosu::KB_RIGHT);
-		links = input().down(Gosu::KB_K); //LEFT
+		links = input().down(Gosu::KB_K); //LEFT*/
 		
 	};
 	
 };
+
 
 
 
@@ -127,7 +178,30 @@ int main()
 {
 	
 	
-	cout << "Hallo Konstantin" << endl;
+	
 	GameWindow window;
 	window.show();
+}
+
+//Postitionskontrolle
+int pos_kontrolle_x(int i) {
+	if (i < 0) {
+		i = i + 5;
+		return i;
+	}
+	if (i > 1600) {
+		i = i - 5;
+		return i;
+	}
+}
+int pos_kontrolle_y(int i) {
+	if (i < 0) {
+		i = i + 5;
+		return i;
+	}
+	if (i > 900) {
+		i = i - 5;
+		return i;
+	}
+	else { return i; }
 }
