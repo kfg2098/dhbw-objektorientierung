@@ -42,11 +42,11 @@ class GameWindow : public Gosu::Window
 
 //-------------------------------------------------------
 public:
-	Gosu::Image bild;
+	Gosu::Image bild, bild_hg;
 	//Gosu::Font font;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png")
+		, bild("Kack.png"), bild_hg("Hintergrund.png")
 		//,font(20)
 		
 	{
@@ -67,33 +67,10 @@ public:
 			0.5,0.4 //Verhältnis zum Kleiner machen 0.4= 40% des Ursprünglichen
 		);
 
-		//font.draw("Hallo", 100, 100, 0);
-		
-		
-
-		
+		bild_hg.draw_rot(0, 0, -10, 0, 0, 0);
 		
 
-		/*Gosu::Graphics::draw_line(0, 20, Gosu::Color::RED,1280, 20, Gosu::Color::GREEN,0.0);
-
-		if (space)
-		{
-			graphics().draw_line(				//Linie zeichnen funktion
-			 60, 80, Gosu::Color::BLUE,		//Startpunkt der Linie mit Farbe
-			200, 100, Gosu::Color::YELLOW,	//Endpunkt der Linie mit Farbe--> Farbverlauf
-			0.0
-			);
-		}
-
-		if (hoch)
-		{
-			graphics().draw_rect(200, 200, 200, 200, Gosu::Color::BLUE,-0.5);
-		}
-
-		if (runter)
-		{
-			graphics().draw_rect(200, 200, 200, 200, Gosu::Color::GREEN, 0.0);
-		}*/
+		
 	};
 
 	
