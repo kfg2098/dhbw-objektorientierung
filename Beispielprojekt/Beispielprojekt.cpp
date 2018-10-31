@@ -93,7 +93,7 @@ public:
 		{ 
 			close();
 		}
-		//Steuerung Spieler Dozent
+		//Steuerung Spieler Student
 		if (input().down(Gosu::ButtonName::KB_UP)&&(pos_p1_y>=0))
 		{
 			pos_p1_y = pos_p1_y - speed;
@@ -114,7 +114,7 @@ public:
 			pos_p1_x = pos_p1_x + speed;
 			
 		}
-		//Steuerung Spieler Student
+		//Steuerung Spieler Dozent
 		if (input().down(Gosu::ButtonName::KB_UP)&&(pos_p2_y>=0))
 		{
 			pos_p2_y = pos_p2_y - speed;
