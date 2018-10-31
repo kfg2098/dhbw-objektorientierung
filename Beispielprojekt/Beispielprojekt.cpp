@@ -127,7 +127,7 @@ int main()
 {
 	
 	
-	
+	cout << "Hallo Konstantin" << endl;
 	GameWindow window;
 	window.show();
 }
