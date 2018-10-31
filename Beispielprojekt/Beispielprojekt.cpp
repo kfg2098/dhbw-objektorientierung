@@ -114,7 +114,7 @@ public:
 		hoch = input().down(Gosu::KB_UP);
 		runter = input().down(Gosu::KB_DOWN);
 		rechts = input().down(Gosu::KB_RIGHT);
-		links = input().down(Gosu::KB_LEFT);
+		links = input().down(Gosu::KB_K); //LEFT
 		
 	};
 	
