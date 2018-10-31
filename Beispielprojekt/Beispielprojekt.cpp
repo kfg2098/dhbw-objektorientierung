@@ -42,11 +42,11 @@ class GameWindow : public Gosu::Window
 
 //-------------------------------------------------------
 public:
-	Gosu::Image bild, bild_hg,buch;
+	Gosu::Image bild, bild_hg,buch,oberschmidt;
 	//Gosu::Font font;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"),oberschmidt("Oberschmidt.png")
 		//,font(20)
 		
 	{
