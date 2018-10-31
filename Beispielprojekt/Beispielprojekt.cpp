@@ -15,7 +15,7 @@
 #include <ctime>
 using namespace std;
 // Simulationsgeschwindigkeit
-const double DT = 100.0;
+
 
 int windowheight =900;
 int windowwidth = 1600;
