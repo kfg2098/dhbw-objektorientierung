@@ -127,22 +127,22 @@ public:
 			
 		}
 		//Steuerung Spieler2 Dozent
-		if (input().down(Gosu::ButtonName::KB_UP)&&(pos_p2_y>=65))
+		if (input().down(Gosu::ButtonName::GP_0_UP)&&(pos_p2_y>=65))
 		{
 			pos_p2_y = pos_p2_y - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_DOWN)&&(pos_p2_y<=830))
+		if (input().down(Gosu::ButtonName::GP_0_DOWN)&&(pos_p2_y<=830))
 		{
 			pos_p2_y = pos_p2_y + speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_LEFT)&&(pos_p2_x>=855))
+		if (input().down(Gosu::ButtonName::GP_0_LEFT)&&(pos_p2_x>=855))
 		{
 			pos_p2_x = pos_p2_x - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_RIGHT)&&(pos_p2_x<=1545))
+		if (input().down(Gosu::ButtonName::GP_0_RIGHT)&&(pos_p2_x<=1545))
 		{
 			pos_p2_x = pos_p2_x + speed;
 			
