@@ -126,7 +126,7 @@ public:
 			pos_p1_x = pos_p1_x + speed;
 			
 		}
-		//Steuerung Spieler2 Dozent
+		//Steuerung Spieler2 Dozent (Steuerung über das DIPAD eines Controllers!)
 		if (input().down(Gosu::ButtonName::GP_0_UP)&&(pos_p2_y>=65))
 		{
 			pos_p2_y = pos_p2_y - speed;
