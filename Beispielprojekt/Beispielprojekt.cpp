@@ -40,8 +40,8 @@ class GameWindow : public Gosu::Window
 	bool links = false;
 	int pos_p1_x = 0;
 	int pos_p1_y = 0;
-	int pos_p2_x = 1600;
-	int pos_p2_y = 900;
+	int pos_p2_x = 1545;
+	int pos_p2_y = 835;
 	const int speed = 5;
 	int leben_p1 = 200;
 	int leben_p2 = 200;
@@ -86,11 +86,11 @@ public:
 		bild_hg.draw_rot(0, 0, -10, 0, 0, 0); //Hintergrund Zpos -10 als unterstes Bild
 		
 		//Lebensanzeige Student
-		Gosu::Graphics::draw_rect(400, 20, 200, 30, Gosu::Color::GRAY, 1);
-		Gosu::Graphics::draw_rect(400, 20, leben_p1, 30, Gosu::Color::GREEN, 2);
+		Gosu::Graphics::draw_rect(400, 20, 200, 30, Gosu::Color::GRAY, -2);
+		Gosu::Graphics::draw_rect(400, 20, leben_p1, 30, Gosu::Color::GREEN, -1);
 		//Lebensanzeige Dozent
-		Gosu::Graphics::draw_rect(1250, 20, -200, 30, Gosu::Color::GRAY, 1);
-		Gosu::Graphics::draw_rect(1250, 20, -leben_p2, 30, Gosu::Color::GREEN, 2);
+		Gosu::Graphics::draw_rect(1250, 20, -200, 30, Gosu::Color::GRAY, -2);
+		Gosu::Graphics::draw_rect(1250, 20, -leben_p2, 30, Gosu::Color::GREEN, -1);
 		
 	};
 
@@ -135,34 +135,28 @@ public:
 			pos_p1_x = pos_p1_x + speed;
 			
 		}
-		//Steuerung Spieler2 Dozent
-		if (input().down(Gosu::ButtonName::KB_UP)&&(pos_p2_y>=0))
+		//Steuerung Spieler2 Dozent (Steuerung über das DIPAD eines Controllers!)
+		if (input().down(Gosu::ButtonName::GP_0_UP)&&(pos_p2_y>=65))
 		{
 			pos_p2_y = pos_p2_y - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_DOWN)&&(pos_p2_y<=windowheight))
+		if (input().down(Gosu::ButtonName::GP_0_DOWN)&&(pos_p2_y<=830))
 		{
 			pos_p2_y = pos_p2_y + speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_LEFT)&&(pos_p2_x>=(windowwidth/2)))
+		if (input().down(Gosu::ButtonName::GP_0_LEFT)&&(pos_p2_x>=855))
 		{
 			pos_p2_x = pos_p2_x - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_RIGHT)&&(pos_p2_x<=1600))
+		if (input().down(Gosu::ButtonName::GP_0_RIGHT)&&(pos_p2_x<=1545))
 		{
 			pos_p2_x = pos_p2_x + speed;
 			
 		}
-		//
-		/*
-		space = input().down(Gosu::KB_SPACE); //Abfrage ob Space gedrückt ist, wenn ja siehe draw Methode
-		hoch = input().down(Gosu::KB_UP);
-		runter = input().down(Gosu::KB_DOWN);
-		rechts = input().down(Gosu::KB_RIGHT);
-		links = input().down(Gosu::KB_K); //LEFT*/
+		
 		
 	};
 	
