@@ -52,15 +52,17 @@ class GameWindow : public Gosu::Window
 	int leben_p1 = 200;
 	int leben_p2 = 200;
 	bool start = true;
+	int warten = 0;
 
 //-------------------------------------------------------
 public:
 	Gosu::Image bild, bild_hg,buch,oberschmidt,student;
 	//Gosu::Font font;
 	Gosu::Song song;
+	Gosu::Sample sample;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav")
 		//,font(20)
 		
 		
@@ -99,11 +101,6 @@ public:
 	// Wird 60x pro Sekunde aufgerufen
 	void update() override
 	{
-		x = input().mouse_x();
-		y = input().mouse_y();
-
-		
-		
 		//Song bei Start abspielen
 		if (start) {
 			song.play();
@@ -156,6 +153,10 @@ public:
 		{
 			pos_p2_x = pos_p2_x + speed;
 			
+		}
+		//Sample abspielen bei Schuss 
+		if (input().down(Gosu::ButtonName::KB_SPACE)) {
+			sample.play();
 		}
 		
 		
