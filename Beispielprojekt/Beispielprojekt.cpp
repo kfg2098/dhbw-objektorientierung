@@ -15,6 +15,10 @@
 #include <forward_list>
 #include <algorithm>
 #include <ctime>
+
+
+
+
 using namespace std;
 
 
@@ -46,10 +50,12 @@ class GameWindow : public Gosu::Window
 public:
 	Gosu::Image bild, bild_hg,buch,oberschmidt;
 	//Gosu::Font font;
+	Gosu::Song song;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"),oberschmidt("Oberschmidt.png")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3")
 		//,font(20)
+		
 		
 	{
 		set_caption("Lern oder stirb!");
@@ -61,6 +67,9 @@ public:
 	// dann werden `draw` Aufrufe ausgelassen und die Framerate sinkt
 	
 	
+	
+	
+
 	void draw() override
 	{
 		bild.draw_rot(pos_p1_x, pos_p1_y, 0.0,
@@ -170,4 +179,6 @@ int main()
 	
 	GameWindow window;
 	window.show();
+
+
 }
