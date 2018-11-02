@@ -15,7 +15,12 @@
 #include <forward_list>
 #include <algorithm>
 #include <ctime>
+
 #include <cstdlib>//für songwiederagbe
+#pragma once
+#include <Gosu/Fwd.hpp>
+#include <Gosu/IO.hpp>
+#include <Gosu/Platform.hpp>
 
 
 
@@ -159,7 +164,81 @@ public:
 		
 		
 	};
-	
+
+
+	//-----------------------------------------------------------
+	//Für Songwiedergabe
+
+	class Channel
+	{
+		mutable int channel, token;
+
+	public:
+		Channel(int channel, int token);
+
+		int current_channel() const;
+
+		bool playing() const;
+		bool paused() const;
+		void pause();
+		void resume();
+		void stop();
+
+		void set_volume(double volume);
+		void set_pan(double pan);
+		void set_speed(double speed);
+	};
+
+	class Sample
+	{
+		struct SampleData;
+		std::shared_ptr<SampleData> data;
+
+	public:
+		Sample();
+
+		explicit Sample(const std::string& song);
+
+		explicit Sample(Reader reader);
+
+		Channel play(double volume = 1, double speed = 1, bool looping = false) const;
+
+		Channel play_pan(double pan, double volume = 1, double speed = 1,
+			bool looping = false) const;
+	};
+
+	class Song
+	{
+		class BaseData;
+		class ModuleData;
+		class StreamData;
+		std::unique_ptr<BaseData> data;
+
+		// Non-movable to avoid dangling internal references.
+		Song(Song&&) = delete;
+		// Non-movable to avoid dangling internal references.
+		Song& operator=(Song&&) = delete;
+
+	public:
+		explicit Song(const std::string& song);
+
+		explicit Song(Reader reader);
+
+		~Song();
+
+		static Song* current_song();
+
+		void play(bool looping = false);
+		void pause();
+		bool paused() const;
+		void stop();
+		bool playing() const;
+		double volume() const;
+		void set_volume(double volume);
+
+		static void update();
+	};
+	//-----------------------------------------------------------
 };
 
 
