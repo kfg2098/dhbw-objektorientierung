@@ -48,12 +48,12 @@ class GameWindow : public Gosu::Window
 
 //-------------------------------------------------------
 public:
-	Gosu::Image bild, bild_hg,buch,oberschmidt;
+	Gosu::Image bild, bild_hg,buch,oberschmidt,student;
 	//Gosu::Font font;
 	Gosu::Song song;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png")
 		//,font(20)
 		
 		
@@ -72,10 +72,10 @@ public:
 
 	void draw() override
 	{
-		bild.draw_rot(pos_p1_x, pos_p1_y, 0.0,
+		student.draw_rot(pos_p1_x, pos_p1_y, 0.0,
 			0,//Rotationswinkel
 			0.5, 0.5, //Position der "Mitte" in realtiv zu x,y -->0|0 ist oben links 0.5|0.5 ist mitte des Bildes
-			0.5,0.4 //Verhältnis zum Kleiner machen 0.4= 40% des Ursprünglichen
+			0.1,0.1 //Verhältnis zum Kleiner machen 0.4= 40% des Ursprünglichen
 		);
 		oberschmidt.draw_rot(pos_p2_x, pos_p2_y, 0.0,
 			0,//Rotationswinkel
@@ -115,22 +115,22 @@ public:
 			close();
 		}
 		//Steuerung Spieler1 Student
-		if (input().down(Gosu::ButtonName::KB_W)&&(pos_p1_y>=0))
+		if (input().down(Gosu::ButtonName::KB_W)&&(pos_p1_y>=56))
 		{
 			pos_p1_y = pos_p1_y - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_S) && (pos_p1_y <=windowheight))
+		if (input().down(Gosu::ButtonName::KB_S) && (pos_p1_y <=843))
 		{
 			pos_p1_y = pos_p1_y + speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_A) && (pos_p1_x >= 0))
+		if (input().down(Gosu::ButtonName::KB_A) && (pos_p1_x >= 36))
 		{
 			pos_p1_x = pos_p1_x - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_D) && (pos_p1_x <= (windowwidth/2)))
+		if (input().down(Gosu::ButtonName::KB_D) && (pos_p1_x <= 764))
 		{
 			pos_p1_x = pos_p1_x + speed;
 			
