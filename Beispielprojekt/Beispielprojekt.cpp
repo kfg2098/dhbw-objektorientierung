@@ -15,7 +15,7 @@
 #include <forward_list>
 #include <algorithm>
 #include <ctime>
-
+#include <cstdlib>//für songwiederagbe
 
 
 
@@ -168,11 +168,15 @@ public:
 // C++ Hauptprogramm
 int main()
 {
-	
+	//Songausgabe
+	string file = "song.mp3";
+	string command = file;
+	system(command.c_str());
 	
 	
 	GameWindow window;
 	window.show();
 
+	
 
 }
