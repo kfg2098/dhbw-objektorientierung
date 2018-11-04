@@ -168,7 +168,7 @@ public:
 
 	//-----------------------------------------------------------
 	//Für Songwiedergabe
-
+	/*
 	class Channel
 	{
 		mutable int channel, token;
@@ -239,6 +239,7 @@ public:
 		static void update();
 	};
 	//-----------------------------------------------------------
+	*/
 };
 
 
