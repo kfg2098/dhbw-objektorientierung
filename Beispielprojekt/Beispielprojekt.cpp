@@ -62,6 +62,9 @@ class GameWindow : public Gosu::Window
 	int leben_p1 = 200;
 	int leben_p2 = 200;
 	bool start = true;
+	bool gameover = false;
+	bool win_dozent = false;
+	bool win_student = false;
 	int warten = 0;
 	vector<Projektil>projektile_s;
 	vector<Projektil>projektile_d;
@@ -74,7 +77,7 @@ public:
 	Gosu::Sample sample,laser;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"), sample("gun.wav"), laser("Lasergun.wav")
 		//,font(20)
 		
 		
@@ -235,7 +238,6 @@ public:
 			projektile_d.push_back(projektilx);
 		}
 		//Hit Student auf Dozent
-		bool gameover = false;
 		int counter = 0;
 		for (auto& p : projektile_s)
 		{
@@ -251,6 +253,7 @@ public:
 				{
 					leben_p2 = leben_p2 - 10;
 					gameover = true;
+					win_student = true;
 				}
 			}
 
@@ -277,6 +280,7 @@ public:
 				{
 					leben_p1 = leben_p1 - 10;
 					gameover = true;
+					win_dozent = true;
 				}
 			}
 
