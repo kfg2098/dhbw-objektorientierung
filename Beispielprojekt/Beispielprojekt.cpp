@@ -58,11 +58,11 @@ class GameWindow : public Gosu::Window
 public:
 	Gosu::Image bild, bild_hg,buch,oberschmidt,student;
 	//Gosu::Font font;
-	Gosu::Song song;
+	Gosu::Song song,laser;
 	Gosu::Sample sample;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav")
 		//,font(20)
 		
 		
@@ -154,9 +154,14 @@ public:
 			pos_p2_x = pos_p2_x + speed;
 			
 		}
-		//Sample abspielen bei Schuss 
+		//Sample abspielen bei Schuss Student
 		if (input().down(Gosu::ButtonName::KB_SPACE)) {
 			sample.play();
+		}
+
+		//Sample abspielen bei Schuss Dozent
+		if (input().down(Gosu::ButtonName::KB_RIGHT_SHIFT)) {
+			laser.play();
 		}
 		
 		
