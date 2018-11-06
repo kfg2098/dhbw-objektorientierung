@@ -36,8 +36,10 @@ int windowwidth = 1600;
 struct Projektil {
 	int pos_pro_x;
 	int pos_pro_y;
-	double abstand;
+	double abstand_s;
 	double abstand_d;
+	double abstand_f;
+	double abstand_w;
 };
 
 //---------------------------------------------------------------------------------
@@ -109,14 +111,14 @@ public:
 		for (auto& p : projektile_s)
 		{
 			Gosu::Graphics::draw_rect(p.pos_pro_x, p.pos_pro_y, 20, 20, Gosu::Color::RED, 0);
-			p.pos_pro_x = p.pos_pro_x + 1.5*speed;
+			p.pos_pro_x = p.pos_pro_x + 2.5*speed;
 		}
 
 		//Projektil Student
 		for (auto& p : projektile_d)
 		{
 			Gosu::Graphics::draw_rect(p.pos_pro_x, p.pos_pro_y, 20, 20, Gosu::Color::RED, 0);
-			p.pos_pro_x = p.pos_pro_x - 1.5*speed;
+			p.pos_pro_x = p.pos_pro_x - 2.5*speed;
 		}
 	};
 
@@ -186,8 +188,8 @@ public:
 		for (auto& p : projektile_s)
 		{
 			test = false;
-			p.abstand = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);
-			if (p.abstand > 300)
+			p.abstand_s = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);
+			if (p.abstand_s > 300)
 			{
 				test = true;
 			}
@@ -232,10 +234,62 @@ public:
 			projektilx.pos_pro_y = pos_p2_y;
 			projektile_d.push_back(projektilx);
 		}
+		//Hit Student auf Dozent
+		bool gameover = false;
+		int counter = 0;
+		for (auto& p : projektile_s)
+		{
+			p.abstand_f = Gosu::distance(pos_p2_x, pos_p2_y, p.pos_pro_x, p.pos_pro_y);
+			if (p.abstand_f < 60)
+			{
+				projektile_s.erase(projektile_s.begin() + counter);
+				if (leben_p2 >= 20)
+				{
+					leben_p2 = leben_p2 - 10;
+				}
+				else if (leben_p2 >= 10)
+				{
+					leben_p2 = leben_p2 - 10;
+					gameover = true;
+				}
+			}
+
+			if (p.pos_pro_x > 1580)
+			{
+				projektile_s.erase(projektile_s.begin() + counter);
+			}
+
+			counter = counter + 1;
+		}
+		//Hit Dozent auf Student
+		counter = 0;
+		for (auto& p : projektile_d)
+		{
+			p.abstand_f = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);
+			if (p.abstand_f < 60)
+			{
+				projektile_d.erase(projektile_d.begin() + counter);
+				if (leben_p1 >= 20)
+				{
+					leben_p1 = leben_p1 - 10;
+				}
+				else if (leben_p1 >= 10)
+				{
+					leben_p1 = leben_p1 - 10;
+					gameover = true;
+				}
+			}
+
+			if (p.pos_pro_x < 20)
+			{
+				projektile_d.erase(projektile_d.begin() + counter);
+			}
+
+			counter = counter + 1;
+		}
 	};
 
 };
-
 
 
 // C++ Hauptprogramm
