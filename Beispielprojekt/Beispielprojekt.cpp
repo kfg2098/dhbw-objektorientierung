@@ -269,6 +269,8 @@ public:
 					win_student = true;
 					queen.set_volume(0.5);
 					queen.play();
+					projektile_d.clear();//Alle bestehende Projektile löschen
+					projektile_s.clear();
 				}
 			}
 
@@ -298,6 +300,8 @@ public:
 					win_dozent = true;
 					gerry.set_volume(1.0);
 					gerry.play();
+					projektile_d.clear();//Alle bestehenden Projektile löschen
+					projektile_s.clear();
 					
 				}
 			}
@@ -321,8 +325,8 @@ int main()
 	cout << "Youtube: Gerald Oberschmidt" << endl;
 	cout << endl;
 	cout << "Dies ist ein Projekt fuer das Fach Informatik." << endl;
-	cout << "Es wird nicht beabsichtig Personen blosszustellen!" << endl;
-
+	cout << "Es wird nicht beabsichtig dargestellte Personen blosszustellen!" << endl;
+	//cout << "...aber die Welt ist halt nicht gerecht" << endl;
 
 	GameWindow window;
 	window.show();
