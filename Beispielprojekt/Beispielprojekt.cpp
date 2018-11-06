@@ -120,8 +120,16 @@ public:
 		//Projektil Student
 		for (auto& p : projektile_d)
 		{
-			Gosu::Graphics::draw_rect(p.pos_pro_x, p.pos_pro_y, 20, 20, Gosu::Color::RED, 0);
+			Gosu::Graphics::draw_rect(p.pos_pro_x, p.pos_pro_y, 20, 20, Gosu::Color::BLUE, 0);
 			p.pos_pro_x = p.pos_pro_x - 2.5*speed;
+		}
+		if (gameover) {
+			if (win_dozent) {
+				winner_d.draw_rot(0, 0, 10, 0, 0, 0);
+			}
+			if (win_student) {
+				winner_s.draw_rot(0, 0, 10, 0, 0, 0);
+			}
 		}
 	};
 
@@ -185,7 +193,7 @@ public:
 		}
 		
 		
-		
+		//Schuss Student
 		bool test = false;
 		int anzahl = 0;
 		for (auto& p : projektile_s)
@@ -202,9 +210,9 @@ public:
 			anzahl = anzahl + 1;
 		}
 
-		if (input().down(Gosu::ButtonName::KB_SPACE) && (test || anzahl == 0))
+		if ((input().down(Gosu::ButtonName::KB_SPACE) && (test || anzahl == 0))&& !gameover)
 		{
-			laser.play(); //Gun Sound
+			laser.play(0.75); //Gun Sound
 			Projektil projektilx;
 			projektilx.pos_pro_x = pos_p1_x;
 			projektilx.pos_pro_y = pos_p1_y;
@@ -229,7 +237,7 @@ public:
 			anzahl1 = anzahl1 + 1;
 		}
 
-		if (input().down(Gosu::ButtonName::KB_RIGHT_CONTROL) && (test1 || anzahl1 == 0))
+		if ((input().down(Gosu::ButtonName::KB_RIGHT_CONTROL) && (test1 || anzahl1 == 0))&& !gameover)
 		{
 			sample.play(); //Gun Sound
 			Projektil projektilx;
