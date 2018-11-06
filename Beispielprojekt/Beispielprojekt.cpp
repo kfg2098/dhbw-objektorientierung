@@ -73,11 +73,11 @@ class GameWindow : public Gosu::Window
 public:
 	Gosu::Image bild, bild_hg,buch,oberschmidt,student,winner_d,winner_s,feuer1,buch1;
 	//Gosu::Font font;
-	Gosu::Song song,gerry;
+	Gosu::Song song,gerry,queen;
 	Gosu::Sample sample,laser,blaster;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav"),winner_s("Winner_Student.png"),winner_d("Winner_Dozent.png"),blaster("Blaster.wav"),feuer1("Feuer1.png"),buch1("Buch1.png"),gerry("Gerry.wav")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav"),winner_s("Winner_Student.png"),winner_d("Winner_Dozent.png"),blaster("Blaster.wav"),feuer1("Feuer1.png"),buch1("Buch1.png"),gerry("Gerry.wav"),queen("Queen.wav")
 		//,font(20)
 		
 		
@@ -264,6 +264,7 @@ public:
 					leben_p2 = leben_p2 - 10;
 					gameover = true;
 					win_student = true;
+					queen.play();
 				}
 			}
 
