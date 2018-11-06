@@ -37,6 +37,7 @@ struct Projektil {
 	int pos_pro_x;
 	int pos_pro_y;
 	double abstand;
+	double abstand_d;
 };
 
 //---------------------------------------------------------------------------------
@@ -61,6 +62,7 @@ class GameWindow : public Gosu::Window
 	bool start = true;
 	int warten = 0;
 	vector<Projektil>projektile_s;
+	vector<Projektil>projektile_d;
 
 //-------------------------------------------------------
 public:
@@ -109,6 +111,13 @@ public:
 			Gosu::Graphics::draw_rect(p.pos_pro_x, p.pos_pro_y, 20, 20, Gosu::Color::RED, 0);
 			p.pos_pro_x = p.pos_pro_x + 1.5*speed;
 		}
+
+		//Projektil Student
+		for (auto& p : projektile_d)
+		{
+			Gosu::Graphics::draw_rect(p.pos_pro_x, p.pos_pro_y, 20, 20, Gosu::Color::RED, 0);
+			p.pos_pro_x = p.pos_pro_x - 1.5*speed;
+		}
 	};
 
 
@@ -128,43 +137,43 @@ public:
 			close();
 		}
 		//Steuerung Spieler1 Student (Controller 0)
-		if (input().down(Gosu::ButtonName::GP_0_UP) && (pos_p1_y >= 56) ||input().down(Gosu::ButtonName::KB_W)&&(pos_p1_y>=56))
+		if ((input().down(Gosu::ButtonName::GP_0_UP)||input().down(Gosu::ButtonName::KB_W))&&(pos_p1_y>=56))
 		{
 			pos_p1_y = pos_p1_y - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::GP_0_DOWN) && (pos_p1_y <= 843)||input().down(Gosu::ButtonName::KB_S) && (pos_p1_y <=843))
+		if ((input().down(Gosu::ButtonName::GP_0_DOWN)||input().down(Gosu::ButtonName::KB_S)) && (pos_p1_y <=843))
 		{
 			pos_p1_y = pos_p1_y + speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::GP_0_LEFT) && (pos_p1_x >= 36)||input().down(Gosu::ButtonName::KB_A) && (pos_p1_x >= 36))
+		if ((input().down(Gosu::ButtonName::GP_0_LEFT)||input().down(Gosu::ButtonName::KB_A)) && (pos_p1_x >= 36))
 		{
 			pos_p1_x = pos_p1_x - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::GP_0_RIGHT) && (pos_p1_x <= 764)||input().down(Gosu::ButtonName::KB_D) && (pos_p1_x <= 764))
+		if ((input().down(Gosu::ButtonName::GP_0_RIGHT)||input().down(Gosu::ButtonName::KB_D)) && (pos_p1_x <= 764))
 		{
 			pos_p1_x = pos_p1_x + speed;
 			
 		}
 		//Steuerung Spieler2 Dozent (Controller 1)
-		if (input().down(Gosu::ButtonName::GP_1_UP)&&(pos_p2_y>=65)|| input().down(Gosu::ButtonName::KB_UP) && (pos_p2_y >= 65))
+		if ((input().down(Gosu::ButtonName::GP_1_UP)|| input().down(Gosu::ButtonName::KB_UP)) && (pos_p2_y >= 65))
 		{
 			pos_p2_y = pos_p2_y - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::GP_1_DOWN)&&(pos_p2_y<=830)|| input().down(Gosu::ButtonName::KB_DOWN) && (pos_p2_y <= 830))
+		if ((input().down(Gosu::ButtonName::GP_1_DOWN)|| input().down(Gosu::ButtonName::KB_DOWN)) && (pos_p2_y <= 830))
 		{
 			pos_p2_y = pos_p2_y + speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::GP_1_LEFT)&&(pos_p2_x>=855)|| input().down(Gosu::ButtonName::KB_LEFT) && (pos_p2_x >= 855))
+		if ((input().down(Gosu::ButtonName::GP_1_LEFT)|| input().down(Gosu::ButtonName::KB_LEFT)) && (pos_p2_x >= 855))
 		{
 			pos_p2_x = pos_p2_x - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::GP_1_RIGHT)&&(pos_p2_x<=1545)|| input().down(Gosu::ButtonName::KB_RIGHT) && (pos_p2_x <= 1545))
+		if ((input().down(Gosu::ButtonName::GP_1_RIGHT)|| input().down(Gosu::ButtonName::KB_RIGHT)) && (pos_p2_x <= 1545))
 		{
 			pos_p2_x = pos_p2_x + speed;
 			
@@ -195,6 +204,33 @@ public:
 			projektilx.pos_pro_x = pos_p1_x;
 			projektilx.pos_pro_y = pos_p1_y;
 			projektile_s.push_back(projektilx);
+		}
+
+
+		//Dozent Schuss
+		bool test1 = false;
+		int anzahl1 = 0;
+		for (auto& p : projektile_d)
+		{
+			test1 = false;
+			p.abstand_d = Gosu::distance(pos_p2_x, pos_p2_y, p.pos_pro_x, p.pos_pro_y);
+			if (p.abstand_d > 300)
+			{
+				test1 = true;
+			}
+		}
+		for (auto& p : projektile_d)
+		{
+			anzahl1 = anzahl1 + 1;
+		}
+
+		if (input().down(Gosu::ButtonName::KB_RIGHT_CONTROL) && (test1 || anzahl1 == 0))
+		{
+			sample.play(); //Gun Sound
+			Projektil projektilx;
+			projektilx.pos_pro_x = pos_p2_x;
+			projektilx.pos_pro_y = pos_p2_y;
+			projektile_d.push_back(projektilx);
 		}
 	};
 
