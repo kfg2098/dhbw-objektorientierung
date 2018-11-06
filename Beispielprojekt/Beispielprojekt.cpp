@@ -47,19 +47,12 @@ struct Projektil {
 class GameWindow : public Gosu::Window
 {
 //-----------------------Globale Variablen----------------
-	double x = 0;
-	double y = 0;
-	bool space = false;
-	bool hoch = false;
-	bool runter = false;
-	bool rechts = false;
-	bool links = false;
-	int pos_p1_x = 36;
+	int pos_p1_x = 36;//Startpostition Student
 	int pos_p1_y = 56;
-	int pos_p2_x = 1545;
+	int pos_p2_x = 1545;//Startposition Dozent
 	int pos_p2_y = 835;
 	const int speed = 7; //Geschwindigkeit
-	int leben_p1 = 200;
+	int leben_p1 = 200;//Leben
 	int leben_p2 = 200;
 	bool start = true;
 	bool gameover = false;
@@ -77,13 +70,11 @@ public:
 	Gosu::Sample sample,laser,blaster;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav"),winner_s("Winner_Student.png"),winner_d("Winner_Dozent.png"),blaster("Blaster.wav"),feuer1("Feuer1.png"),buch1("Buch1.png"),gerry("Gerry.wav"),queen("Queen.wav")
-		//,font(20)
-		
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), student("student.png"), winner_s("Winner_Student.png"), winner_d("Winner_Dozent.png"), feuer1("Feuer1.png"), buch1("Buch1.png") //Konstruktor Bilder
+		, song("song.mp3"),sample("gun.wav"), laser("Lasergun.wav"),blaster("Blaster.wav"),gerry("Gerry.wav"),queen("Queen.wav")//Konstruktor Sound
 		
 	{
-		set_caption("Die Welt ist nicht gleichverteilt, sonst waere sie gerecht!");
-
+		set_caption("Die Welt ist nicht gleichverteilt, sonst waere sie gerecht!"); //Spieltitel
 	}
 
 	
@@ -133,13 +124,14 @@ public:
 			buch1.draw_rot(p.pos_pro_x-40, p.pos_pro_y-10, 1, 0, 0, 0, 0.1, 0.1);
 			p.pos_pro_x = p.pos_pro_x - 2.5*speed;
 		}
+		//Spiel Ende 
 		if (gameover) {
 			if (win_dozent) {
-				winner_d.draw_rot(0, 0, 10, 0, 0, 0);
+				winner_d.draw_rot(0, 0, 10, 0, 0, 0);//Dozent ist Gewinner Bild
 				
 			}
 			if (win_student) {
-				winner_s.draw_rot(0, 0, 10, 0, 0, 0);
+				winner_s.draw_rot(0, 0, 10, 0, 0, 0);//Sutdent ist Gewinner Bild
 			}
 		}
 	};
@@ -155,7 +147,7 @@ public:
 			song.play();
 			start = false;
 		}
-		//Tastenabfrage
+		//Tastenabfrage zur Beendigung
 		if (input().down(Gosu::ButtonName::KB_ESCAPE)||input().down(Gosu::ButtonName::GP_0_BUTTON_0)|| input().down(Gosu::ButtonName::GP_1_BUTTON_0))//schließt und stoppt Song, wenn ESC gedrückt wurde
 		{ 
 			song.stop();
@@ -211,7 +203,7 @@ public:
 		for (auto& p : projektile_s)
 		{
 			test = false;
-			p.abstand_s = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);
+			p.abstand_s = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);//Neues Projektil erst bei bestimmten Abstand erstellen
 			if (p.abstand_s > 300)
 			{
 				test = true;
@@ -222,7 +214,7 @@ public:
 			anzahl = anzahl + 1;
 		}
 
-		if (((input().down(Gosu::ButtonName::KB_SPACE)||input().down(Gosu::ButtonName::GP_0_BUTTON_2))&& (test || anzahl == 0))&& !gameover)
+		if (((input().down(Gosu::ButtonName::KB_SPACE)||input().down(Gosu::ButtonName::GP_0_BUTTON_2))&& (test || anzahl == 0))&& !gameover)//Neues Projektil wird erstellt
 		{
 			
 			laser.play(0.27); //Gun Sound
@@ -239,7 +231,7 @@ public:
 		for (auto& p : projektile_d)
 		{
 			test1 = false;
-			p.abstand_d = Gosu::distance(pos_p2_x, pos_p2_y, p.pos_pro_x, p.pos_pro_y);
+			p.abstand_d = Gosu::distance(pos_p2_x, pos_p2_y, p.pos_pro_x, p.pos_pro_y);//Abstandsabfrage
 			if (p.abstand_d > 300)
 			{
 				test1 = true;
@@ -250,7 +242,7 @@ public:
 			anzahl1 = anzahl1 + 1;
 		}
 
-		if (((input().down(Gosu::ButtonName::KB_RIGHT_CONTROL)||input().down(Gosu::ButtonName::GP_1_BUTTON_2) )&& (test1 || anzahl1 == 0))&& !gameover)
+		if (((input().down(Gosu::ButtonName::KB_RIGHT_CONTROL)||input().down(Gosu::ButtonName::GP_1_BUTTON_2) )&& (test1 || anzahl1 == 0))&& !gameover)//Neues Projektil
 		{
 			blaster.play(0.27); //Gun Sound
 			Projektil projektilx;
@@ -262,11 +254,11 @@ public:
 		int counter = 0;
 		for (auto& p : projektile_s)
 		{
-			p.abstand_f = Gosu::distance(pos_p2_x, pos_p2_y, p.pos_pro_x, p.pos_pro_y);
+			p.abstand_f = Gosu::distance(pos_p2_x, pos_p2_y, p.pos_pro_x, p.pos_pro_y);//Hit wenn Abstand gering wird
 			if (p.abstand_f < 60)
 			{
 				projektile_s.erase(projektile_s.begin() + counter);
-				if (leben_p2 >= 20)
+				if (leben_p2 >= 20)//Leben wird bei Treffer abgezogen
 				{
 					leben_p2 = leben_p2 - 10;
 				}
@@ -280,7 +272,7 @@ public:
 				}
 			}
 
-			if (p.pos_pro_x > 1580)
+			if (p.pos_pro_x > 1580)//Projektil wird nach Bildrand gelöscht
 			{
 				projektile_s.erase(projektile_s.begin() + counter);
 			}
@@ -291,11 +283,11 @@ public:
 		counter = 0;
 		for (auto& p : projektile_d)
 		{
-			p.abstand_f = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);
+			p.abstand_f = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);//Hitabfrage
 			if (p.abstand_f < 60)
 			{
 				projektile_d.erase(projektile_d.begin() + counter);
-				if (leben_p1 >= 20)
+				if (leben_p1 >= 20)//Lebensabfrage
 				{
 					leben_p1 = leben_p1 - 10;
 				}
@@ -310,7 +302,7 @@ public:
 				}
 			}
 
-			if (p.pos_pro_x < 20)
+			if (p.pos_pro_x < 20)//Ortabfrage
 			{
 				projektile_d.erase(projektile_d.begin() + counter);
 			}
@@ -325,8 +317,12 @@ public:
 // C++ Hauptprogramm
 int main()
 {
-	cout << "Credits:" << endl;
+	cout << "Credits:" << endl;//Consolen Text
 	cout << "Youtube: Gerald Oberschmidt" << endl;
+	cout << endl;
+	cout << "Dies ist ein Projekt fuer das Fach Informatik." << endl;
+	cout << "Es wird nicht beabsichtig Personen blosszustellen!" << endl;
+
 
 	GameWindow window;
 	window.show();
