@@ -214,7 +214,8 @@ public:
 
 		if (((input().down(Gosu::ButtonName::KB_SPACE)||input().down(Gosu::ButtonName::GP_0_BUTTON_2))&& (test || anzahl == 0))&& !gameover)
 		{
-			laser.play(); //Gun Sound
+			
+			laser.play(0.8); //Gun Sound
 			Projektil projektilx;
 			projektilx.pos_pro_x = pos_p1_x;
 			projektilx.pos_pro_y = pos_p1_y;
