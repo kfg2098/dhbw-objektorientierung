@@ -66,8 +66,8 @@ class GameWindow : public Gosu::Window
 public:
 	Gosu::Image bild, bild_hg,buch,oberschmidt,student;
 	//Gosu::Font font;
-	Gosu::Song song,laser;
-	Gosu::Sample sample;
+	Gosu::Song song;
+	Gosu::Sample sample,laser;
 	GameWindow()
 		: Window(windowwidth, windowheight)
 		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav")
@@ -169,23 +169,16 @@ public:
 			pos_p2_x = pos_p2_x + speed;
 			
 		}
-		//Sample abspielen bei Schuss Student
-		if (input().down(Gosu::ButtonName::KB_SPACE)) {
-			sample.play();
-		}
-
-		//Sample abspielen bei Schuss Dozent
-		if (input().down(Gosu::ButtonName::KB_RIGHT_SHIFT)) {
-			laser.play();
-		}
+		
 		
 		
 		bool test = false;
 		int anzahl = 0;
 		for (auto& p : projektile_s)
 		{
+			test = false;
 			p.abstand = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);
-			if (p.abstand > 20)
+			if (p.abstand > 300)
 			{
 				test = true;
 			}
@@ -197,6 +190,7 @@ public:
 
 		if (input().down(Gosu::ButtonName::KB_SPACE) && (test || anzahl == 0))
 		{
+			laser.play(); //Gun Sound
 			Projektil projektilx;
 			projektilx.pos_pro_x = pos_p1_x;
 			projektilx.pos_pro_y = pos_p1_y;
