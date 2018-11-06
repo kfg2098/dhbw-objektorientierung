@@ -21,6 +21,7 @@
 #include <Gosu/Fwd.hpp>
 #include <Gosu/IO.hpp>
 #include <Gosu/Platform.hpp>
+#include <Gosu/Audio.hpp>
 
 
 
@@ -43,22 +44,25 @@ class GameWindow : public Gosu::Window
 	bool runter = false;
 	bool rechts = false;
 	bool links = false;
-	int pos_p1_x = 0;
-	int pos_p1_y = 0;
+	int pos_p1_x = 36;
+	int pos_p1_y = 56;
 	int pos_p2_x = 1545;
 	int pos_p2_y = 835;
 	const int speed = 5;
 	int leben_p1 = 200;
 	int leben_p2 = 200;
+	bool start = true;
+	int warten = 0;
 
 //-------------------------------------------------------
 public:
 	Gosu::Image bild, bild_hg,buch,oberschmidt,student;
 	//Gosu::Font font;
 	Gosu::Song song;
+	Gosu::Sample sample;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav")
 		//,font(20)
 		
 		
@@ -67,14 +71,7 @@ public:
 
 	}
 
-	// wird bis zu 60x pro Sekunde aufgerufen.
-	// Wenn die Grafikkarte oder der Prozessor nicht mehr hinterherkommen,
-	// dann werden `draw` Aufrufe ausgelassen und die Framerate sinkt
 	
-	
-	
-	
-
 	void draw() override
 	{
 		student.draw_rot(pos_p1_x, pos_p1_y, 0.0,
@@ -99,164 +96,79 @@ public:
 		
 	};
 
-	
-
-	
 
 
 	// Wird 60x pro Sekunde aufgerufen
 	void update() override
 	{
-		x = input().mouse_x();
-		y = input().mouse_y();
-
-		
-		
-		
-
+		//Song bei Start abspielen
+		if (start) {
+			song.play();
+			start = false;
+		}
 		//Tastenabfrage
-		if (input().down(Gosu::ButtonName::KB_ESCAPE))//schließt, wenn ESC gedrückt wurde
+		if (input().down(Gosu::ButtonName::KB_ESCAPE))//schließt und stoppt Song, wenn ESC gedrückt wurde
 		{ 
+			song.stop();
 			close();
 		}
-		//Steuerung Spieler1 Student
-		if (input().down(Gosu::ButtonName::KB_W)&&(pos_p1_y>=56))
+		//Steuerung Spieler1 Student (Controller 0)
+		if (input().down(Gosu::ButtonName::GP_0_UP) && (pos_p1_y >= 56) ||input().down(Gosu::ButtonName::KB_W)&&(pos_p1_y>=56))
 		{
 			pos_p1_y = pos_p1_y - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_S) && (pos_p1_y <=843))
+		if (input().down(Gosu::ButtonName::GP_0_DOWN) && (pos_p1_y <= 843)||input().down(Gosu::ButtonName::KB_S) && (pos_p1_y <=843))
 		{
 			pos_p1_y = pos_p1_y + speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_A) && (pos_p1_x >= 36))
+		if (input().down(Gosu::ButtonName::GP_0_LEFT) && (pos_p1_x >= 36)||input().down(Gosu::ButtonName::KB_A) && (pos_p1_x >= 36))
 		{
 			pos_p1_x = pos_p1_x - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::KB_D) && (pos_p1_x <= 764))
+		if (input().down(Gosu::ButtonName::GP_0_RIGHT) && (pos_p1_x <= 764)||input().down(Gosu::ButtonName::KB_D) && (pos_p1_x <= 764))
 		{
 			pos_p1_x = pos_p1_x + speed;
 			
 		}
-		//Steuerung Spieler2 Dozent (Steuerung über das DIPAD eines Controllers!)
-		if (input().down(Gosu::ButtonName::GP_0_UP)&&(pos_p2_y>=65))
+		//Steuerung Spieler2 Dozent (Controller 1)
+		if (input().down(Gosu::ButtonName::GP_1_UP)&&(pos_p2_y>=65)|| input().down(Gosu::ButtonName::KB_UP) && (pos_p2_y >= 65))
 		{
 			pos_p2_y = pos_p2_y - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::GP_0_DOWN)&&(pos_p2_y<=830))
+		if (input().down(Gosu::ButtonName::GP_1_DOWN)&&(pos_p2_y<=830)|| input().down(Gosu::ButtonName::KB_DOWN) && (pos_p2_y <= 830))
 		{
 			pos_p2_y = pos_p2_y + speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::GP_0_LEFT)&&(pos_p2_x>=855))
+		if (input().down(Gosu::ButtonName::GP_1_LEFT)&&(pos_p2_x>=855)|| input().down(Gosu::ButtonName::KB_LEFT) && (pos_p2_x >= 855))
 		{
 			pos_p2_x = pos_p2_x - speed;
 			
 		}
-		if (input().down(Gosu::ButtonName::GP_0_RIGHT)&&(pos_p2_x<=1545))
+		if (input().down(Gosu::ButtonName::GP_1_RIGHT)&&(pos_p2_x<=1545)|| input().down(Gosu::ButtonName::KB_RIGHT) && (pos_p2_x <= 1545))
 		{
 			pos_p2_x = pos_p2_x + speed;
 			
+		}
+		//Sample abspielen bei Schuss 
+		if (input().down(Gosu::ButtonName::KB_SPACE)) {
+			sample.play();
 		}
 		
 		
 	};
 
-
-	//-----------------------------------------------------------
-	//Für Songwiedergabe
-	/*
-	class Channel
-	{
-		mutable int channel, token;
-
-	public:
-		Channel(int channel, int token);
-
-		int current_channel() const;
-
-		bool playing() const;
-		bool paused() const;
-		void pause();
-		void resume();
-		void stop();
-
-		void set_volume(double volume);
-		void set_pan(double pan);
-		void set_speed(double speed);
-	};
-
-	class Sample
-	{
-		struct SampleData;
-		std::shared_ptr<SampleData> data;
-
-	public:
-		Sample();
-
-		explicit Sample(const std::string& song);
-
-		explicit Sample(Reader reader);
-
-		Channel play(double volume = 1, double speed = 1, bool looping = false) const;
-
-		Channel play_pan(double pan, double volume = 1, double speed = 1,
-			bool looping = false) const;
-	};
-
-	class Song
-	{
-		class BaseData;
-		class ModuleData;
-		class StreamData;
-		std::unique_ptr<BaseData> data;
-
-		// Non-movable to avoid dangling internal references.
-		Song(Song&&) = delete;
-		// Non-movable to avoid dangling internal references.
-		Song& operator=(Song&&) = delete;
-
-	public:
-		explicit Song(const std::string& song);
-
-		explicit Song(Reader reader);
-
-		~Song();
-
-		static Song* current_song();
-
-		void play(bool looping = false);
-		void pause();
-		bool paused() const;
-		void stop();
-		bool playing() const;
-		double volume() const;
-		void set_volume(double volume);
-
-		static void update();
-	};
-	//-----------------------------------------------------------
-	*/
 };
-
 
 
 
 // C++ Hauptprogramm
 int main()
 {
-	//Songausgabe
-	string file = "song.mp3";
-	string command = file;
-	system(command.c_str());
-	
-	
 	GameWindow window;
 	window.show();
-
-	
-
 }
