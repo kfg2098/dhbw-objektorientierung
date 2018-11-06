@@ -315,4 +315,7 @@ int main()
 {
 	GameWindow window;
 	window.show();
+	cout << "Credits:" << endl;
+	cout << "Youtube: Gerald Oberschmidt" << endl;
+	
 }
