@@ -264,6 +264,7 @@ public:
 					leben_p2 = leben_p2 - 10;
 					gameover = true;
 					win_student = true;
+					queen.set_volume(1);
 					queen.play();
 				}
 			}
@@ -313,9 +314,11 @@ public:
 // C++ Hauptprogramm
 int main()
 {
-	GameWindow window;
-	window.show();
 	cout << "Credits:" << endl;
 	cout << "Youtube: Gerald Oberschmidt" << endl;
+
+	GameWindow window;
+	window.show();
+	
 	
 }
