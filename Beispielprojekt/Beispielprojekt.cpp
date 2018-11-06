@@ -73,16 +73,16 @@ class GameWindow : public Gosu::Window
 public:
 	Gosu::Image bild, bild_hg,buch,oberschmidt,student,winner_d,winner_s,feuer1,buch1;
 	//Gosu::Font font;
-	Gosu::Song song;
+	Gosu::Song song,gerry;
 	Gosu::Sample sample,laser,blaster;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav"),winner_s("Winner_Student.png"),winner_d("Winner_Dozent.png"),blaster("Blaster.wav"),feuer1("Feuer1.png"),buch1("Buch1.png")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav"),winner_s("Winner_Student.png"),winner_d("Winner_Dozent.png"),blaster("Blaster.wav"),feuer1("Feuer1.png"),buch1("Buch1.png"),gerry("Gerry.wav")
 		//,font(20)
 		
 		
 	{
-		set_caption("Die Welt ist nicht gleichverteilt, sonst wäre sie gerecht!");
+		set_caption("Die Welt ist nicht gleichverteilt, sonst waere sie gerecht!");
 
 	}
 
@@ -126,6 +126,7 @@ public:
 		if (gameover) {
 			if (win_dozent) {
 				winner_d.draw_rot(0, 0, 10, 0, 0, 0);
+				
 			}
 			if (win_student) {
 				winner_s.draw_rot(0, 0, 10, 0, 0, 0);
@@ -289,6 +290,8 @@ public:
 					leben_p1 = leben_p1 - 10;
 					gameover = true;
 					win_dozent = true;
+					gerry.play();
+					
 				}
 			}
 
