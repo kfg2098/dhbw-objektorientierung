@@ -105,10 +105,20 @@ public:
 		
 		//Lebensanzeige Student
 		Gosu::Graphics::draw_rect(400, 20, 200, 30, Gosu::Color::GRAY, -2);
-		Gosu::Graphics::draw_rect(400, 20, leben_p1, 30, Gosu::Color::GREEN, -1);
+		if (leben_p1 < 50) {
+			Gosu::Graphics::draw_rect(400, 20, leben_p1, 30, Gosu::Color::RED, -1);
+		}
+		else {
+			Gosu::Graphics::draw_rect(400, 20, leben_p1, 30, Gosu::Color::GREEN, -1);
+		}
 		//Lebensanzeige Dozent
 		Gosu::Graphics::draw_rect(1250, 20, -200, 30, Gosu::Color::GRAY, -2);
-		Gosu::Graphics::draw_rect(1250, 20, -leben_p2, 30, Gosu::Color::GREEN, -1);
+		if (leben_p2 < 50) {
+			Gosu::Graphics::draw_rect(1250, 20, -leben_p2, 30, Gosu::Color::RED, -1);
+		}
+		else {
+			Gosu::Graphics::draw_rect(1250, 20, -leben_p2, 30, Gosu::Color::GREEN, -1);
+		}
 		
 		//Projektil Student
 		for (auto& p : projektile_s)
@@ -141,7 +151,7 @@ public:
 	{
 		//Song bei Start abspielen
 		if (start) {
-			song.set_volume(0.8);
+			song.set_volume(0.27);
 			song.play();
 			start = false;
 		}
@@ -215,7 +225,7 @@ public:
 		if (((input().down(Gosu::ButtonName::KB_SPACE)||input().down(Gosu::ButtonName::GP_0_BUTTON_2))&& (test || anzahl == 0))&& !gameover)
 		{
 			
-			laser.play(0.8); //Gun Sound
+			laser.play(0.27); //Gun Sound
 			Projektil projektilx;
 			projektilx.pos_pro_x = pos_p1_x;
 			projektilx.pos_pro_y = pos_p1_y;
@@ -242,7 +252,7 @@ public:
 
 		if (((input().down(Gosu::ButtonName::KB_RIGHT_CONTROL)||input().down(Gosu::ButtonName::GP_1_BUTTON_2) )&& (test1 || anzahl1 == 0))&& !gameover)
 		{
-			blaster.play(); //Gun Sound
+			blaster.play(0.27); //Gun Sound
 			Projektil projektilx;
 			projektilx.pos_pro_x = pos_p2_x;
 			projektilx.pos_pro_y = pos_p2_y;
@@ -265,7 +275,7 @@ public:
 					leben_p2 = leben_p2 - 10;
 					gameover = true;
 					win_student = true;
-					queen.set_volume(1);
+					queen.set_volume(0.5);
 					queen.play();
 				}
 			}
@@ -294,7 +304,7 @@ public:
 					leben_p1 = leben_p1 - 10;
 					gameover = true;
 					win_dozent = true;
-					gerry.set_volume(1);
+					gerry.set_volume(1.0);
 					gerry.play();
 					
 				}
