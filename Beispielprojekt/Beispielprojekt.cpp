@@ -82,7 +82,7 @@ public:
 		
 		
 	{
-		set_caption("Die Welt ist nicht gerecht,sonst wäre sie gleichverteilt!");
+		set_caption("Die Welt ist nicht gleichverteilt, sonst wäre sie gerecht!");
 
 	}
 
@@ -113,14 +113,14 @@ public:
 		//Projektil Student
 		for (auto& p : projektile_s)
 		{
-			feuer1.draw_rot(p.pos_pro_x, p.pos_pro_y, 1,0,0,0,0.4,0.4);
+			feuer1.draw_rot(p.pos_pro_x+20, p.pos_pro_y+30, 1,180,0,0,0.25,0.25);
 			p.pos_pro_x = p.pos_pro_x + 2.5*speed;
 		}
 
 		//Projektil Dozent
 		for (auto& p : projektile_d)
 		{
-			buch1.draw_rot(p.pos_pro_x, p.pos_pro_y, 1, 0, 0, 0, 0.4, 0.4);
+			buch1.draw_rot(p.pos_pro_x-40, p.pos_pro_y-10, 1, 0, 0, 0, 0.1, 0.1);
 			p.pos_pro_x = p.pos_pro_x - 2.5*speed;
 		}
 		if (gameover) {
