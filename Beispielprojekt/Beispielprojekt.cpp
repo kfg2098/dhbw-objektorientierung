@@ -71,13 +71,13 @@ class GameWindow : public Gosu::Window
 
 //-------------------------------------------------------
 public:
-	Gosu::Image bild, bild_hg,buch,oberschmidt,student;
+	Gosu::Image bild, bild_hg,buch,oberschmidt,student,winner_d,winner_s;
 	//Gosu::Font font;
 	Gosu::Song song;
 	Gosu::Sample sample,laser;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"), sample("gun.wav"), laser("Lasergun.wav")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav"),winner_s("Winner_Student.png"),winner_d("Winner_Dozent.png")
 		//,font(20)
 		
 		
