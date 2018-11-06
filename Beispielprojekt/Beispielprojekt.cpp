@@ -212,7 +212,7 @@ public:
 
 		if ((input().down(Gosu::ButtonName::KB_SPACE) && (test || anzahl == 0))&& !gameover)
 		{
-			laser.play(0.75); //Gun Sound
+			laser.play(); //Gun Sound
 			Projektil projektilx;
 			projektilx.pos_pro_x = pos_p1_x;
 			projektilx.pos_pro_y = pos_p1_y;
