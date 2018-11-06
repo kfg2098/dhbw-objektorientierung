@@ -212,7 +212,7 @@ public:
 			anzahl = anzahl + 1;
 		}
 
-		if ((input().down(Gosu::ButtonName::KB_SPACE) && (test || anzahl == 0))&& !gameover)
+		if (((input().down(Gosu::ButtonName::KB_SPACE)||input().down(Gosu::ButtonName::GP_0_BUTTON_2))&& (test || anzahl == 0))&& !gameover)
 		{
 			laser.play(); //Gun Sound
 			Projektil projektilx;
@@ -239,7 +239,7 @@ public:
 			anzahl1 = anzahl1 + 1;
 		}
 
-		if ((input().down(Gosu::ButtonName::KB_RIGHT_CONTROL) && (test1 || anzahl1 == 0))&& !gameover)
+		if (((input().down(Gosu::ButtonName::KB_RIGHT_CONTROL)||input().down(Gosu::ButtonName::GP_1_BUTTON_2) )&& (test1 || anzahl1 == 0))&& !gameover)
 		{
 			blaster.play(); //Gun Sound
 			Projektil projektilx;
