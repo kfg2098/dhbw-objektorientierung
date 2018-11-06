@@ -61,6 +61,7 @@ class GameWindow : public Gosu::Window
 	bool start = true;
 	int warten = 0;
 	vector<Projektil>projektile_s;
+	
 
 //-------------------------------------------------------
 public:
@@ -109,6 +110,7 @@ public:
 			Gosu::Graphics::draw_rect(p.pos_pro_x, p.pos_pro_y, 20, 20, Gosu::Color::RED, 0);
 			p.pos_pro_x = p.pos_pro_x + 1.5*speed;
 		}
+		
 	};
 
 
@@ -127,51 +129,9 @@ public:
 			song.stop();
 			close();
 		}
-		//Steuerung Spieler1 Student (Controller 0)
-		if (input().down(Gosu::ButtonName::GP_0_UP) && (pos_p1_y >= 56) ||input().down(Gosu::ButtonName::KB_W)&&(pos_p1_y>=56))
-		{
-			pos_p1_y = pos_p1_y - speed;
-			
-		}
-		if (input().down(Gosu::ButtonName::GP_0_DOWN) && (pos_p1_y <= 843)||input().down(Gosu::ButtonName::KB_S) && (pos_p1_y <=843))
-		{
-			pos_p1_y = pos_p1_y + speed;
-			
-		}
-		if (input().down(Gosu::ButtonName::GP_0_LEFT) && (pos_p1_x >= 36)||input().down(Gosu::ButtonName::KB_A) && (pos_p1_x >= 36))
-		{
-			pos_p1_x = pos_p1_x - speed;
-			
-		}
-		if (input().down(Gosu::ButtonName::GP_0_RIGHT) && (pos_p1_x <= 764)||input().down(Gosu::ButtonName::KB_D) && (pos_p1_x <= 764))
-		{
-			pos_p1_x = pos_p1_x + speed;
-			
-		}
-		//Steuerung Spieler2 Dozent (Controller 1)
-		if (input().down(Gosu::ButtonName::GP_1_UP)&&(pos_p2_y>=65)|| input().down(Gosu::ButtonName::KB_UP) && (pos_p2_y >= 65))
-		{
-			pos_p2_y = pos_p2_y - speed;
-			
-		}
-		if (input().down(Gosu::ButtonName::GP_1_DOWN)&&(pos_p2_y<=830)|| input().down(Gosu::ButtonName::KB_DOWN) && (pos_p2_y <= 830))
-		{
-			pos_p2_y = pos_p2_y + speed;
-			
-		}
-		if (input().down(Gosu::ButtonName::GP_1_LEFT)&&(pos_p2_x>=855)|| input().down(Gosu::ButtonName::KB_LEFT) && (pos_p2_x >= 855))
-		{
-			pos_p2_x = pos_p2_x - speed;
-			
-		}
-		if (input().down(Gosu::ButtonName::GP_1_RIGHT)&&(pos_p2_x<=1545)|| input().down(Gosu::ButtonName::KB_RIGHT) && (pos_p2_x <= 1545))
-		{
-			pos_p2_x = pos_p2_x + speed;
-			
-		}
 		
 		
-		
+		//Schuss Student
 		bool test = false;
 		int anzahl = 0;
 		for (auto& p : projektile_s)
@@ -196,6 +156,7 @@ public:
 			projektilx.pos_pro_y = pos_p1_y;
 			projektile_s.push_back(projektilx);
 		}
+		
 	};
 
 };
