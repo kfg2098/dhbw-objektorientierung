@@ -141,6 +141,7 @@ public:
 	{
 		//Song bei Start abspielen
 		if (start) {
+			song.set_volume(0.8);
 			song.play();
 			start = false;
 		}
@@ -290,6 +291,7 @@ public:
 					leben_p1 = leben_p1 - 10;
 					gameover = true;
 					win_dozent = true;
+					gerry.set_volume(1);
 					gerry.play();
 					
 				}
