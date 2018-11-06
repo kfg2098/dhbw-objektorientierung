@@ -71,10 +71,10 @@ public:
 	Gosu::Image bild, bild_hg,buch,oberschmidt,student,winner_d,winner_s;
 	//Gosu::Font font;
 	Gosu::Song song;
-	Gosu::Sample sample,laser;
+	Gosu::Sample sample,laser,blaster;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav"),winner_s("Winner_Student.png"),winner_d("Winner_Dozent.png")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav"),winner_s("Winner_Student.png"),winner_d("Winner_Dozent.png"),blaster("Blaster.wav")
 		//,font(20)
 		
 		
@@ -228,7 +228,7 @@ public:
 
 		if (input().down(Gosu::ButtonName::KB_RIGHT_CONTROL) && (test1 || anzahl1 == 0))
 		{
-			sample.play(); //Gun Sound
+			blaster.play(); //Gun Sound
 			Projektil projektilx;
 			projektilx.pos_pro_x = pos_p2_x;
 			projektilx.pos_pro_y = pos_p2_y;
