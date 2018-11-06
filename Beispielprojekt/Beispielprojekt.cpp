@@ -71,18 +71,18 @@ class GameWindow : public Gosu::Window
 
 //-------------------------------------------------------
 public:
-	Gosu::Image bild, bild_hg,buch,oberschmidt,student,winner_d,winner_s,feuer1;
+	Gosu::Image bild, bild_hg,buch,oberschmidt,student,winner_d,winner_s,feuer1,buch1;
 	//Gosu::Font font;
 	Gosu::Song song;
 	Gosu::Sample sample,laser,blaster;
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav"),winner_s("Winner_Student.png"),winner_d("Winner_Dozent.png"),blaster("Blaster.wav"),feuer1("Feuer1.png")
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), song("song.mp3"), student("student.png"),sample("gun.wav"), laser("Lasergun.wav"),winner_s("Winner_Student.png"),winner_d("Winner_Dozent.png"),blaster("Blaster.wav"),feuer1("Feuer1.png"),buch1("Buch1.png")
 		//,font(20)
 		
 		
 	{
-		set_caption("Lern oder stirb!");
+		set_caption("Die Welt ist nicht gerecht,sonst wäre sie gleichverteilt!");
 
 	}
 
@@ -113,14 +113,14 @@ public:
 		//Projektil Student
 		for (auto& p : projektile_s)
 		{
-			Gosu::Graphics::draw_rect(p.pos_pro_x, p.pos_pro_y, 20, 20, Gosu::Color::RED, 0);
+			feuer1.draw_rot(p.pos_pro_x, p.pos_pro_y, 1,0,0,0,0.4,0.4);
 			p.pos_pro_x = p.pos_pro_x + 2.5*speed;
 		}
 
-		//Projektil Student
+		//Projektil Dozent
 		for (auto& p : projektile_d)
 		{
-			Gosu::Graphics::draw_rect(p.pos_pro_x, p.pos_pro_y, 20, 20, Gosu::Color::BLUE, 0);
+			buch1.draw_rot(p.pos_pro_x, p.pos_pro_y, 1, 0, 0, 0, 0.4, 0.4);
 			p.pos_pro_x = p.pos_pro_x - 2.5*speed;
 		}
 		if (gameover) {
