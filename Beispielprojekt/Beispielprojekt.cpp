@@ -32,6 +32,13 @@ using namespace std;
 int windowheight =900;
 int windowwidth = 1600;
 
+//Prjektil 
+struct Projektil {
+	int pos_pro_x;
+	int pos_pro_y;
+	double abstand;
+};
+
 //---------------------------------------------------------------------------------
 
 class GameWindow : public Gosu::Window
@@ -53,6 +60,7 @@ class GameWindow : public Gosu::Window
 	int leben_p2 = 200;
 	bool start = true;
 	int warten = 0;
+	vector<Projektil>projektile_s;
 
 //-------------------------------------------------------
 public:
@@ -87,6 +95,7 @@ public:
 
 		bild_hg.draw_rot(0, 0, -10, 0, 0, 0); //Hintergrund Zpos -10 als unterstes Bild
 		
+		
 		//Lebensanzeige Student
 		Gosu::Graphics::draw_rect(400, 20, 200, 30, Gosu::Color::GRAY, -2);
 		Gosu::Graphics::draw_rect(400, 20, leben_p1, 30, Gosu::Color::GREEN, -1);
@@ -94,6 +103,12 @@ public:
 		Gosu::Graphics::draw_rect(1250, 20, -200, 30, Gosu::Color::GRAY, -2);
 		Gosu::Graphics::draw_rect(1250, 20, -leben_p2, 30, Gosu::Color::GREEN, -1);
 		
+		//Projektil Student
+		for (auto& p : projektile_s)
+		{
+			Gosu::Graphics::draw_rect(p.pos_pro_x, p.pos_pro_y, 20, 20, Gosu::Color::RED, 0);
+			p.pos_pro_x = p.pos_pro_x + 1.5*speed;
+		}
 	};
 
 
@@ -165,6 +180,28 @@ public:
 		}
 		
 		
+		bool test = false;
+		int anzahl = 0;
+		for (auto& p : projektile_s)
+		{
+			p.abstand = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);
+			if (p.abstand > 20)
+			{
+				test = true;
+			}
+		}
+		for (auto& p : projektile_s)
+		{
+			anzahl = anzahl + 1;
+		}
+
+		if (input().down(Gosu::ButtonName::KB_SPACE) && (test || anzahl == 0))
+		{
+			Projektil projektilx;
+			projektilx.pos_pro_x = pos_p1_x;
+			projektilx.pos_pro_y = pos_p1_y;
+			projektile_s.push_back(projektilx);
+		}
 	};
 
 };
