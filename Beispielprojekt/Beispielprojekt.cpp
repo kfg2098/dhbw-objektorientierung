@@ -58,7 +58,7 @@ class GameWindow : public Gosu::Window
 	int pos_p1_y = 56;
 	int pos_p2_x = 1545;
 	int pos_p2_y = 835;
-	const int speed = 5;
+	const int speed = 7; //Geschwindigkeit
 	int leben_p1 = 200;
 	int leben_p2 = 200;
 	bool start = true;
@@ -146,7 +146,7 @@ public:
 			start = false;
 		}
 		//Tastenabfrage
-		if (input().down(Gosu::ButtonName::KB_ESCAPE))//schließt und stoppt Song, wenn ESC gedrückt wurde
+		if (input().down(Gosu::ButtonName::KB_ESCAPE)||input().down(Gosu::ButtonName::GP_0_BUTTON_0)|| input().down(Gosu::ButtonName::GP_1_BUTTON_0))//schließt und stoppt Song, wenn ESC gedrückt wurde
 		{ 
 			song.stop();
 			close();
