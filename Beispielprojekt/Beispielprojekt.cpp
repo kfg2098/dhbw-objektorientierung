@@ -32,7 +32,7 @@ using namespace std;
 int windowheight =900;
 int windowwidth = 1600;
 
-//Prjektil 
+//Projektil 
 struct Projektil {
 	int pos_pro_x;
 	int pos_pro_y;
@@ -41,6 +41,7 @@ struct Projektil {
 	double abstand_f;
 	double abstand_w;
 };
+
 
 //---------------------------------------------------------------------------------
 
@@ -61,13 +62,17 @@ class GameWindow : public Gosu::Window
 	int warten = 0;
 	vector<Projektil>projektile_s;
 	vector<Projektil>projektile_d;
-
+	int t_y_pos = 0; //für Barierre
+	bool runter = true;
 //-------------------------------------------------------
 public:
 	Gosu::Image bild, bild_hg,buch,oberschmidt,student,winner_d,winner_s,feuer1,buch1;
 	//Gosu::Font font;
 	Gosu::Song song,gerry,queen;
 	Gosu::Sample sample,laser,blaster;
+
+	
+
 	GameWindow()
 		: Window(windowwidth, windowheight)
 		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), student("student.png"), winner_s("Winner_Student.png"), winner_d("Winner_Dozent.png"), feuer1("Feuer1.png"), buch1("Buch1.png") //Konstruktor Bilder
@@ -110,6 +115,9 @@ public:
 		else {
 			Gosu::Graphics::draw_rect(1250, 20, -leben_p2, 30, Gosu::Color::GREEN, -1);
 		}
+
+		//Barriere in der Mitte
+		Gosu::Graphics::draw_rect(775, t_y_pos, 50, 120, Gosu::Color::BLACK, 2);
 		
 		//Projektil Student
 		for (auto& p : projektile_s)
@@ -195,6 +203,29 @@ public:
 			pos_p2_x = pos_p2_x + speed;
 			
 		}
+		
+		//Barriere
+		if (t_y_pos > 780)
+		{
+			runter = false;
+		}
+		if (t_y_pos < 0)
+		{
+			runter = true;
+		}
+		if (runter)
+		{
+			t_y_pos = (t_y_pos + speed);
+		}		
+		if (!runter)
+		{
+			t_y_pos = (t_y_pos - speed);
+		}
+
+		
+		
+
+
 		
 		
 		//Schuss Student
