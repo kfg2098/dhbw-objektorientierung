@@ -40,6 +40,8 @@ struct Projektil {
 	double abstand_d;
 	double abstand_f;
 	double abstand_w;
+	double abstand_b;//Barrikade, Abstand für Student
+	double abstand_b2; //Abstand für Dozent
 };
 
 
@@ -204,7 +206,7 @@ public:
 			
 		}
 		
-		//Barriere
+		//Barriere Bewegung
 		if (t_y_pos > 780)
 		{
 			runter = false;
@@ -344,6 +346,33 @@ public:
 
 			counter = counter + 1;
 		}
+
+		//Hit Abfrage für Barriere
+		//Student
+		counter = 0;
+		for (auto& p : projektile_s)
+		{
+			p.abstand_b = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos+60); //p1 student 
+			if (p.abstand_b < 25)
+			{
+				projektile_s.erase(projektile_s.begin() + counter);
+			}
+			counter = counter + 1;
+		}
+		
+
+		//Dozent
+		counter = 0;
+		for (auto& p : projektile_d)
+		{
+			p.abstand_b2 = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos + 60); //p2 dozent 800 da Mitte der Barriere, +60 da mitte aus y Richtung 
+			if (p.abstand_b2 < 25)
+			{
+				projektile_d.erase(projektile_d.begin() + counter);
+			}
+			counter = counter + 1;
+		}
+		
 	};
 
 };
