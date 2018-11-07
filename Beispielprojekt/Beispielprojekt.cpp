@@ -58,7 +58,7 @@ class GameWindow : public Gosu::Window
 	int pos_p1_y = 56;
 	int pos_p2_x = 1545;
 	int pos_p2_y = 835;
-	const int speed = 7; //Geschwindigkeit
+	const int speed = 7; //Geschwindigkeit statt 5
 	int leben_p1 = 200;
 	int leben_p2 = 200;
 	bool start = true;
