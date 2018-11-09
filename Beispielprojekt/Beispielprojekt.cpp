@@ -230,7 +230,7 @@ public:
 			pos_p2 = ;
 		}
 		if ((pos_p2_x) && (pos_p2_y)) {
-
+			pos_p2_x=
 		}
 		
 
