@@ -244,7 +244,7 @@ public:
 		{
 			test = false;
 			p.abstand_s = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);//Neues Projektil erst bei bestimmten Abstand erstellen
-			if (p.abstand_s > 300)
+			if (p.abstand_s > 400)
 			{
 				test = true;
 			}
@@ -272,7 +272,7 @@ public:
 		{
 			test1 = false;
 			p.abstand_d = Gosu::distance(pos_p2_x, pos_p2_y, p.pos_pro_x, p.pos_pro_y);//Abstandsabfrage
-			if (p.abstand_d > 300)
+			if (p.abstand_d > 400)
 			{
 				test1 = true;
 			}
@@ -311,6 +311,8 @@ public:
 					queen.play();
 					projektile_d.clear();//Alle bestehende Projektile löschen
 					projektile_s.clear();
+
+		
 				}
 			}
 
