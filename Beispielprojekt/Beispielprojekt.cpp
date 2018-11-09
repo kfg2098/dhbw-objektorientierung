@@ -369,10 +369,7 @@ public:
 		counter = 0;
 		for (auto& p : projektile_s)
 		{
-			//p.abstand_b = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos+60); //p1 student 
-
 			if((p.pos_pro_x>=775)&&(p.pos_pro_y>=t_y_pos)&&(p.pos_pro_y<=t_y_pos+120))
-			//if (p.abstand_b < 35)
 			{
 				projektile_s.erase(projektile_s.begin() + counter);
 			}
@@ -384,8 +381,6 @@ public:
 		for (auto& p : projektile_d)
 		{
 			if ((p.pos_pro_x <= 825) && (p.pos_pro_y >= t_y_pos) && (p.pos_pro_y <= t_y_pos + 120))
-			//p.abstand_b2 = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos + 60); //p2 dozent 800 da Mitte der Barriere, +60 da mitte aus y Richtung 
-			//if (p.abstand_b2 < 35)
 			{
 				projektile_d.erase(projektile_d.begin() + counter);
 			}
@@ -409,8 +404,12 @@ public:
 // C++ Hauptprogramm
 int main()
 {
+	cout << "Dies ist ein Projekt fuer das Fach Informatik." << endl;
+	cout << "Es wird nicht beabsichtig dargestellte Personen blosszustellen!" << endl;
+	cout << endl;
 	cout << "Credits:" << endl;//Consolen Text
-	cout << "Youtube: Gerald Oberschmidt" << endl;
+	cout << "Youtube: Gerald Oberschmidt: https://www.youtube.com/watch?v=f-HZZT5TkPo&t=51s" << endl;
+	cout << "https://www.karlsruhe.dhbw.de/fileadmin/user_upload/images/content/Bilder-Adressverwaltung/Oberschmidt-Gerald-Prof.jpg" << endl;
 	cout << endl;
 	cout << "Dies ist ein Projekt fuer das Fach Informatik." << endl;
 	cout << "Es wird nicht beabsichtig dargestellte Personen blosszustellen!" << endl;
