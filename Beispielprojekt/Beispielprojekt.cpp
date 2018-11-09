@@ -229,23 +229,16 @@ public:
 		}
 
 		//Türteleporter
-		if ((638<=pos_p1_x<=659) && (826<=pos_p2_y<=847)) {
-			
+		if ((638<=pos_p1_x) && (pos_p1_x<=659) && (826<=pos_p1_y) && (pos_p1_y<=847)) {
+			pos_p1_x = Gosu::random(20, 750);
+			pos_p1_y = Gosu::random(20, 850);
 		}
 		if ((880<=pos_p2_x<=908) && (58<=pos_p2_y<=79)) {
-			
-		//Türteleporter random spawn
-		// Spieler 1 Student
-		/*if ((pos_p1_x) && (pos_p2_y)) {
-			pos_p1_x = double Gosu::random(20,750);
-			pos_p1_y = double Gosu::random(20,850);
+			pos_p2_x = Gosu::random(850, 1580);
+			pos_p2_y = Gosu::random(20, 850);
 		}
-
-		//Spieler 2 Dozent
-		if ((pos_p2_x) && (pos_p2_y)) {
-			pos_p2_x = double Gosu::random(850,1580);
-			pos_p2_y = double Gosu::random(20,850);
-		}*/
+	
+			
 		
 
 
