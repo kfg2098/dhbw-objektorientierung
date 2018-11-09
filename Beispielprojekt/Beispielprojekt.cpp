@@ -217,11 +217,11 @@ public:
 		}
 		if (runter)
 		{
-			t_y_pos = (t_y_pos + speed);
+			t_y_pos = (t_y_pos + speed*0.5);
 		}		
 		if (!runter)
 		{
-			t_y_pos = (t_y_pos - speed);
+			t_y_pos = (t_y_pos - speed*0.5);
 		}
 
 		
@@ -335,6 +335,11 @@ public:
 					gerry.play();
 					projektile_d.clear();//Alle bestehenden Projektile löschen
 					projektile_s.clear();
+
+					if (input().down(Gosu::ButtonName::KB_G))
+					{
+						int main();
+					}
 					
 				}
 			}
@@ -353,20 +358,19 @@ public:
 		for (auto& p : projektile_s)
 		{
 			p.abstand_b = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos+60); //p1 student 
-			if (p.abstand_b < 25)
+			if (p.abstand_b < 50)
 			{
 				projektile_s.erase(projektile_s.begin() + counter);
 			}
 			counter = counter + 1;
 		}
 		
-
 		//Dozent
 		counter = 0;
 		for (auto& p : projektile_d)
 		{
 			p.abstand_b2 = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos + 60); //p2 dozent 800 da Mitte der Barriere, +60 da mitte aus y Richtung 
-			if (p.abstand_b2 < 25)
+			if (p.abstand_b2 < 50)
 			{
 				projektile_d.erase(projektile_d.begin() + counter);
 			}
