@@ -404,6 +404,7 @@ public:
 // C++ Hauptprogramm
 int main()
 {
+	char s;
 	cout << "Dies ist ein Projekt fuer das Fach Informatik." << endl;
 	cout << "Es wird nicht beabsichtig dargestellte Personen blosszustellen!" << endl;
 	cout << endl;
@@ -411,8 +412,6 @@ int main()
 	cout << "Youtube: Gerald Oberschmidt: https://www.youtube.com/watch?v=f-HZZT5TkPo&t=51s" << endl;
 	cout << "https://www.karlsruhe.dhbw.de/fileadmin/user_upload/images/content/Bilder-Adressverwaltung/Oberschmidt-Gerald-Prof.jpg" << endl;
 	cout << endl;
-	cout << "Dies ist ein Projekt fuer das Fach Informatik." << endl;
-	cout << "Es wird nicht beabsichtig dargestellte Personen blosszustellen!" << endl;
 	Gosu::sleep(3000);
 	cout << "Steuerung:" << endl;
 	cout << "	Student:" << endl;
@@ -423,9 +422,12 @@ int main()
 	cout << "		Schuss:		rechte Strg (Tastatur),Button 3 oder X (Gamepad)" << endl;
 	cout << "	Spiel erneut starten:	R (Tastatur),Button 2 oder B (Gamepad)" << endl;
 	cout << "	Beenden:	ESC (Tastatur), Button 1 oder A (Gamepad)" << endl;
-
-	GameWindow window;
-	window.show();
-	
-	
+	cout << endl;
+	cout << "Um das Spiel zu starten bitte [s] druecken." << endl;
+	cin >> s;
+	if (s == 's') {
+		cout << "Lade Spiel..." << endl;
+		GameWindow window;
+		window.show();
+	}
 }
