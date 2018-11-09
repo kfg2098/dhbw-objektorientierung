@@ -369,8 +369,10 @@ public:
 		counter = 0;
 		for (auto& p : projektile_s)
 		{
-			p.abstand_b = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos+60); //p1 student 
-			if (p.abstand_b < 35)
+			//p.abstand_b = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos+60); //p1 student 
+
+			if((p.pos_pro_x>=775)&&(p.pos_pro_y>=t_y_pos)&&(p.pos_pro_y<=t_y_pos+120))
+			//if (p.abstand_b < 35)
 			{
 				projektile_s.erase(projektile_s.begin() + counter);
 			}
@@ -381,8 +383,9 @@ public:
 		counter = 0;
 		for (auto& p : projektile_d)
 		{
-			p.abstand_b2 = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos + 60); //p2 dozent 800 da Mitte der Barriere, +60 da mitte aus y Richtung 
-			if (p.abstand_b2 < 35)
+			if ((p.pos_pro_x <= 825) && (p.pos_pro_y >= t_y_pos) && (p.pos_pro_y <= t_y_pos + 120))
+			//p.abstand_b2 = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos + 60); //p2 dozent 800 da Mitte der Barriere, +60 da mitte aus y Richtung 
+			//if (p.abstand_b2 < 35)
 			{
 				projektile_d.erase(projektile_d.begin() + counter);
 			}
