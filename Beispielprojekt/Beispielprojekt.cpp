@@ -229,7 +229,7 @@ public:
 		}
 
 		//Türteleporter
-		if ((638<=pos_p1_x) && (pos_p1_x<=659) && (826<=pos_p1_y) && (pos_p1_y<=847)) {
+		if ((638<=pos_p1_x) && (pos_p1_x<=659) && (826<=pos_p1_y) && (pos_p1_y<=856)) {
 			pos_p1_x = Gosu::random(20, 750);
 			pos_p1_y = Gosu::random(20, 850);
 		}
@@ -240,8 +240,6 @@ public:
 		}
 		
 
-		
-		
 		//Schuss Student
 		bool test = false;
 		int anzahl = 0;
