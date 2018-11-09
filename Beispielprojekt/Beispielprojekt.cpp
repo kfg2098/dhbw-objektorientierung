@@ -366,25 +366,21 @@ public:
 
 		//Hit Abfrage für Barriere
 		//Student
-		counter = 0;
-		for (auto& p : projektile_s)
+		for (int i=0;i<=projektile_s.size();i++)
 		{
-			if((p.pos_pro_x>775)&&(p.pos_pro_y>t_y_pos)&&(p.pos_pro_y<t_y_pos+120))
+			if((projektile_s.at(i).pos_pro_x>775)&&(projektile_s.at(i).pos_pro_y>t_y_pos)&&(projektile_s.at(i).pos_pro_y<t_y_pos+120))
 			{
-				projektile_s.erase(projektile_s.begin() + counter);
+				projektile_s.erase(projektile_s.begin() + i);
 			}
-			counter = counter + 1;
 		}
 		
 		//Dozent
-		counter = 0;
-		for (auto& p : projektile_d)
+		for (int i = 0; i <= projektile_d.size(); i++)
 		{
-			if ((p.pos_pro_x < 825) && (p.pos_pro_y > t_y_pos) && (p.pos_pro_y < t_y_pos + 120))
+			if ((projektile_d.at(i).pos_pro_x < 825) && (projektile_d.at(i).pos_pro_y > t_y_pos) && (projektile_d.at(i).pos_pro_y < t_y_pos + 120))
 			{
-				projektile_d.erase(projektile_d.begin() + counter);
+				projektile_d.erase(projektile_d.begin() + i);
 			}
-			counter = counter + 1;
 		}
 
 		//Game restart mit Taste R
