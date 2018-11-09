@@ -99,6 +99,7 @@ public:
 		);
 
 		bild_hg.draw_rot(0, 0, -10, 0, 0, 0); //Hintergrund Zpos -10 als unterstes Bild
+		tuer.draw_rot(0, 150, -5, 0, 0.5, 0.5);
 		
 		
 		//Lebensanzeige Student
@@ -225,13 +226,13 @@ public:
 		}
 
 		//Türteleporter
-		if ((pos_p1_x) && (pos_p2_y)) {
+		/*if ((pos_p1_x) && (pos_p2_y)) {
 			pos_p1_x = ;
 			pos_p2 = ;
 		}
 		if ((pos_p2_x) && (pos_p2_y)) {
 			pos_p2_x=
-		}
+		}*/
 		
 
 
