@@ -217,11 +217,11 @@ public:
 		}
 		if (runter)
 		{
-			t_y_pos = (t_y_pos + speed);
+			t_y_pos = (t_y_pos + speed*0.5);
 		}		
 		if (!runter)
 		{
-			t_y_pos = (t_y_pos - speed);
+			t_y_pos = (t_y_pos - speed*0.5);
 		}
 
 		
@@ -335,6 +335,11 @@ public:
 					gerry.play();
 					projektile_d.clear();//Alle bestehenden Projektile löschen
 					projektile_s.clear();
+
+					if (input().down(Gosu::ButtonName::KB_G))
+					{
+						int main();
+					}
 					
 				}
 			}
@@ -360,7 +365,6 @@ public:
 			counter = counter + 1;
 		}
 		
-
 		//Dozent
 		counter = 0;
 		for (auto& p : projektile_d)
