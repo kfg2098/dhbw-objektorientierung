@@ -224,7 +224,14 @@ public:
 			t_y_pos = (t_y_pos - speed*0.5);
 		}
 
-		
+		//Türteleporter
+		if ((pos_p1_x) && (pos_p2_y)) {
+			pos_p1_x = ;
+			pos_p2 = ;
+		}
+		if ((pos_p2_x) && (pos_p2_y)) {
+
+		}
 		
 
 
@@ -376,6 +383,7 @@ public:
 			}
 			counter = counter + 1;
 		}
+
 		//Game restart mit Taste R
 		if (gameover && (input().down(Gosu::ButtonName::KB_R)||input().down(Gosu::ButtonName::GP_0_BUTTON_1)||input().down(Gosu::ButtonName::GP_1_BUTTON_1))) {
 			gameover = false;
