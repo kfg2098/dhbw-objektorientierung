@@ -229,10 +229,9 @@ public:
 		}
 
 		//Türteleporter
-		//Student Tür
-		if ((638<=pos_p1_x<=659) && (826<=pos_p1_y<=847)) {
-			pos_p1_x =  Gosu::random(20, 750);
-			pos_p1_y =  Gosu::random(20, 850);
+		if ((638<=pos_p1_x) && (pos_p1_x<=659) && (826<=pos_p1_y) && (pos_p1_y<=847)) {
+			pos_p1_x = Gosu::random(20, 750);
+			pos_p1_y = Gosu::random(20, 850);
 		}
 		//Dozent Tür
 		if ((pos_p2_x >= 880) && (pos_p2_x <= 908)&& (pos_p2_y >= 58)&&(pos_p2_y<=79)) {
