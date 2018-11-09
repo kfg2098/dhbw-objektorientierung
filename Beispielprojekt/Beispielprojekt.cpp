@@ -101,9 +101,10 @@ public:
 		bild_hg.draw_rot(0, 0, -10, 0, 0, 0); //Hintergrund Zpos -10 als unterstes Bild
 
 		tuer.draw_rot(600, 810, -5, 0, 0, 0,0.1,0.1);//Teleporter für Student
+		tuer.draw_rot(100, 150, -5, 0, 0, 0, 0.1, 0.1);//Teleporter für Student
 		tuer.draw_rot(850, 0, -5, 0, 0, 0, 0.1, 0.1);//Teleporter für Dozent
-		
-		
+		tuer.draw_rot(1400, 700, -5, 0, 0, 0, 0.1, 0.1);//Teleporter für Dozent
+
 		
 		//Lebensanzeige Student
 		Gosu::Graphics::draw_rect(400, 20, 200, 30, Gosu::Color::GRAY, -2);
