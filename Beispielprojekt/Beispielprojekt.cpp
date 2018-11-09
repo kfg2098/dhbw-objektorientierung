@@ -308,13 +308,12 @@ public:
 			projektile_d.push_back(projektilx);
 		}
 		//Hit Student auf Dozent
-		int counter = 0;
-		for (auto& p : projektile_s)
+		for (int i =0;i<projektile_s.size();i++)
 		{
-			p.abstand_f = Gosu::distance(pos_p2_x, pos_p2_y, p.pos_pro_x, p.pos_pro_y);//Hit wenn Abstand gering wird
-			if (p.abstand_f < 60)
+			projektile_s.at(i).abstand_f = Gosu::distance(pos_p2_x, pos_p2_y, projektile_s.at(i).pos_pro_x, projektile_s.at(i).pos_pro_y);//Hit wenn Abstand gering wird
+			if (projektile_s.at(i).abstand_f < 60)
 			{
-				projektile_s.erase(projektile_s.begin() + counter);
+				projektile_s.erase(projektile_s.begin() + i);
 				if (leben_p2 >= 20)//Leben wird bei Treffer abgezogen
 				{
 					leben_p2 = leben_p2 - 10;
@@ -328,26 +327,21 @@ public:
 					queen.play();
 					projektile_d.clear();//Alle bestehende Projektile löschen
 					projektile_s.clear();
-
-		
 				}
 			}
 
-			if (p.pos_pro_x > 1580)//Projektil wird nach Bildrand gelöscht
+			if (projektile_s.at(i).pos_pro_x > 1580)//Projektil wird nach Bildrand gelöscht
 			{
-				projektile_s.erase(projektile_s.begin() + counter);
+				projektile_s.erase(projektile_s.begin() + i);
 			}
-
-			counter = counter + 1;
 		}
 		//Hit Dozent auf Student
-		counter = 0;
-		for (auto& p : projektile_d)
+		for (int i = 0; i<projektile_s.size(); i++)
 		{
-			p.abstand_f = Gosu::distance(pos_p1_x, pos_p1_y, p.pos_pro_x, p.pos_pro_y);//Hitabfrage
-			if (p.abstand_f < 60)
+			projektile_d.at(i).abstand_f = Gosu::distance(pos_p1_x, pos_p1_y, projektile_d.at(i).pos_pro_x, projektile_d.at(i).pos_pro_y);//Hitabfrage
+			if (projektile_d.at(i).abstand_f < 60)
 			{
-				projektile_d.erase(projektile_d.begin() + counter);
+				projektile_d.erase(projektile_d.begin() + i);
 				if (leben_p1 >= 20)//Lebensabfrage
 				{
 					leben_p1 = leben_p1 - 10;
@@ -361,21 +355,13 @@ public:
 					gerry.play();
 					projektile_d.clear();//Alle bestehenden Projektile löschen
 					projektile_s.clear();
-
-					if (input().down(Gosu::ButtonName::KB_G))
-					{
-						int main();
-					}
-					
 				}
 			}
 
-			if (p.pos_pro_x < 20)//Ortabfrage
+			if (projektile_d.at(i).pos_pro_x < 20)//Ortabfrage
 			{
-				projektile_d.erase(projektile_d.begin() + counter);
+				projektile_d.erase(projektile_d.begin() + i);
 			}
-
-			counter = counter + 1;
 		}
 
 		//Hit Abfrage für Barriere
@@ -405,10 +391,10 @@ public:
 			win_student = false;
 			leben_p1 = 200;
 			leben_p2 = 200;
-			int pos_p1_x = 36;//Startpostition Student
-			int pos_p1_y = 56;
-			int pos_p2_x = 1545;//Startposition Dozent
-			int pos_p2_y = 835;
+			pos_p1_x = 36;//Startpostition Student
+			pos_p1_y = 56;
+			pos_p2_x = 1545;//Startposition Dozent
+			pos_p2_y = 835;
 		}
 	};
 
