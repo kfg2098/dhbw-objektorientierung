@@ -369,7 +369,7 @@ public:
 		counter = 0;
 		for (auto& p : projektile_s)
 		{
-			if((p.pos_pro_x>=775)&&(p.pos_pro_y>=t_y_pos)&&(p.pos_pro_y<=t_y_pos+120))
+			if((p.pos_pro_x>775)&&(p.pos_pro_y>t_y_pos)&&(p.pos_pro_y<t_y_pos+120))
 			{
 				projektile_s.erase(projektile_s.begin() + counter);
 			}
@@ -380,7 +380,7 @@ public:
 		counter = 0;
 		for (auto& p : projektile_d)
 		{
-			if ((p.pos_pro_x <= 825) && (p.pos_pro_y >= t_y_pos) && (p.pos_pro_y <= t_y_pos + 120))
+			if ((p.pos_pro_x < 825) && (p.pos_pro_y > t_y_pos) && (p.pos_pro_y < t_y_pos + 120))
 			{
 				projektile_d.erase(projektile_d.begin() + counter);
 			}
@@ -423,10 +423,10 @@ int main()
 	cout << "	Spiel erneut starten:	R (Tastatur),Button 2 oder B (Gamepad)" << endl;
 	cout << "	Beenden:	ESC (Tastatur), Button 1 oder A (Gamepad)" << endl;
 	cout << endl;
-	cout << "Um das Spiel zu starten bitte [s] druecken." << endl;
+	cout << "Um das Spiel zu starten bitte [s] druecken: ";
 	cin >> s;
 	if (s == 's') {
-		cout << "Lade Spiel..." << endl;
+		cout << "Lade Spiel";
 		GameWindow window;
 		window.show();
 	}
