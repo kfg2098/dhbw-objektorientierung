@@ -358,7 +358,7 @@ public:
 		for (auto& p : projektile_s)
 		{
 			p.abstand_b = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos+60); //p1 student 
-			if (p.abstand_b < 50)
+			if (p.abstand_b < 35)
 			{
 				projektile_s.erase(projektile_s.begin() + counter);
 			}
@@ -370,7 +370,7 @@ public:
 		for (auto& p : projektile_d)
 		{
 			p.abstand_b2 = Gosu::distance(p.pos_pro_x, p.pos_pro_y, 800, t_y_pos + 60); //p2 dozent 800 da Mitte der Barriere, +60 da mitte aus y Richtung 
-			if (p.abstand_b2 < 50)
+			if (p.abstand_b2 < 35)
 			{
 				projektile_d.erase(projektile_d.begin() + counter);
 			}
@@ -390,7 +390,7 @@ int main()
 	cout << endl;
 	cout << "Dies ist ein Projekt fuer das Fach Informatik." << endl;
 	cout << "Es wird nicht beabsichtig dargestellte Personen blosszustellen!" << endl;
-	//cout << "...aber die Welt ist halt nicht gerecht" << endl;
+	
 
 	GameWindow window;
 	window.show();
