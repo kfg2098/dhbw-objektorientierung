@@ -224,7 +224,14 @@ public:
 			t_y_pos = (t_y_pos - speed*0.5);
 		}
 
-		
+		//Türteleporter
+		if ((pos_p1_x) && (pos_p2_y)) {
+			pos_p1_x = ;
+			pos_p2 = ;
+		}
+		if ((pos_p2_x) && (pos_p2_y)) {
+
+		}
 		
 
 
