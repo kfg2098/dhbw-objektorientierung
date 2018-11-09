@@ -405,6 +405,10 @@ public:
 			win_student = false;
 			leben_p1 = 200;
 			leben_p2 = 200;
+			int pos_p1_x = 36;//Startpostition Student
+			int pos_p1_y = 56;
+			int pos_p2_x = 1545;//Startposition Dozent
+			int pos_p2_y = 835;
 		}
 	};
 
