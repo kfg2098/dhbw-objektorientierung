@@ -414,7 +414,16 @@ int main()
 	cout << endl;
 	cout << "Dies ist ein Projekt fuer das Fach Informatik." << endl;
 	cout << "Es wird nicht beabsichtig dargestellte Personen blosszustellen!" << endl;
-	
+	Gosu::sleep(3000);
+	cout << "Steuerung:" << endl;
+	cout << "	Student:" << endl;
+	cout << "		Bewegung:	W/S/A/D (Tastatur),Joystick (Gamepad)" << endl;
+	cout << "		Schuss:		Leertaste (Tastatur),Button 3 oder X (Gamepad)" << endl;
+	cout << "	Dozent:" << endl;
+	cout << "		Bewegung:	Pfeiltasten (Tastatur),Joystick (Gamepad)" << endl;
+	cout << "		Schuss:		rechte Strg (Tastatur),Button 3 oder X (Gamepad)" << endl;
+	cout << "	Spiel erneut starten:	R (Tastatur),Button 2 oder B (Gamepad)" << endl;
+	cout << "	Beenden:	ESC (Tastatur), Button 1 oder A (Gamepad)" << endl;
 
 	GameWindow window;
 	window.show();
