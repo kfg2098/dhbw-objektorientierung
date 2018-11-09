@@ -68,7 +68,7 @@ class GameWindow : public Gosu::Window
 	bool runter = true;
 //-------------------------------------------------------
 public:
-	Gosu::Image bild, bild_hg,buch,oberschmidt,student,winner_d,winner_s,feuer1,buch1;
+	Gosu::Image bild, bild_hg,buch,oberschmidt,student,winner_d,winner_s,feuer1,buch1, tuer;
 	//Gosu::Font font;
 	Gosu::Song song,gerry,queen;
 	Gosu::Sample sample,laser,blaster;
@@ -77,7 +77,7 @@ public:
 
 	GameWindow()
 		: Window(windowwidth, windowheight)
-		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), student("student.png"), winner_s("Winner_Student.png"), winner_d("Winner_Dozent.png"), feuer1("Feuer1.png"), buch1("Buch1.png") //Konstruktor Bilder
+		, bild("Kack.png"), bild_hg("Hintergrund.png"), oberschmidt("Oberschmidt.png"), student("student.png"), winner_s("Winner_Student.png"), winner_d("Winner_Dozent.png"), feuer1("Feuer1.png"), buch1("Buch1.png"), tuer("tuer.png")  //Konstruktor Bilder
 		, song("song.mp3"),sample("gun.wav"), laser("Lasergun.wav"),blaster("Blaster.wav"),gerry("Gerry.wav"),queen("Queen.wav")//Konstruktor Sound
 		
 	{
@@ -378,6 +378,7 @@ public:
 			}
 			counter = counter + 1;
 		}
+
 		//Game restart mit Taste R
 		if (gameover && (input().down(Gosu::ButtonName::KB_R)||input().down(Gosu::ButtonName::GP_0_BUTTON_1)||input().down(Gosu::ButtonName::GP_1_BUTTON_1))) {
 			gameover = false;
