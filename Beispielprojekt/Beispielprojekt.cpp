@@ -100,8 +100,8 @@ public:
 
 		bild_hg.draw_rot(0, 0, -10, 0, 0, 0); //Hintergrund Zpos -10 als unterstes Bild
 
-		tuer.draw_rot(600, 810, -5, 0, 0, 0,0.1,0.1);
-		tuer.draw_rot(850, 0, -5, 0, 0, 0, 0.1, 0.1);
+		tuer.draw_rot(600, 810, -5, 0, 0, 0,0.1,0.1);//Teleporter für Student
+		tuer.draw_rot(850, 0, -5, 0, 0, 0, 0.1, 0.1);//Teleporter für Dozent
 		
 		
 		
