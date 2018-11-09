@@ -228,6 +228,11 @@ public:
 			t_y_pos = (t_y_pos - speed*0.5);
 		}
 
+		//Türteleporter random spawn
+		// Spieler 1 Student
+		/*if ((pos_p1_x) && (pos_p2_y)) {
+			pos_p1_x = double Gosu::random(20,750);
+			pos_p1_y = double Gosu::random(20,850);
 		//Türteleporter
 		if ((638<=pos_p1_x<=659) && (826<=pos_p2_y<=847)) {
 			
@@ -235,6 +240,12 @@ public:
 		if ((880<=pos_p2_x<=908) && (58<=pos_p2_y<=79)) {
 			
 		}
+
+		//Spieler 2 Dozent
+		if ((pos_p2_x) && (pos_p2_y)) {
+			pos_p2_x = double Gosu::random(850,1580);
+			pos_p2_y = double Gosu::random(20,850);
+		}*/
 		
 
 
