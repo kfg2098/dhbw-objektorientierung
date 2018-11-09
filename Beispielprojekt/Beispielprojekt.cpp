@@ -378,7 +378,15 @@ public:
 			}
 			counter = counter + 1;
 		}
-		
+		//Game restart mit Taste R
+		if (gameover && (input().down(Gosu::ButtonName::KB_R)||input().down(Gosu::ButtonName::GP_0_BUTTON_1)||input().down(Gosu::ButtonName::GP_1_BUTTON_1))) {
+			gameover = false;
+			start = true;
+			win_dozent = false;
+			win_student = false;
+			leben_p1 = 200;
+			leben_p2 = 200;
+		}
 	};
 
 };
