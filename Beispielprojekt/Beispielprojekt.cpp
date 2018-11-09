@@ -229,16 +229,29 @@ public:
 		}
 
 		//Türteleporter
+		//Student
+		//Tür 1
 		if ((638<=pos_p1_x) && (pos_p1_x<=659) && (826<=pos_p1_y) && (pos_p1_y<=856)) {
 			pos_p1_x = Gosu::random(20, 750);
 			pos_p1_y = Gosu::random(20, 850);
 		}
-		//Dozent Tür
+		//Tür 2
+		if ((134 <= pos_p1_x) && (pos_p1_x <= 155) && (154 <= pos_p1_y) && (pos_p1_y <= 224)) {
+			pos_p1_x = Gosu::random(20, 750);
+			pos_p1_y = Gosu::random(20, 850);
+		}
+
+		//Dozent
+		//Tür 1
 		if ((pos_p2_x >= 880) && (pos_p2_x <= 908)&& (pos_p2_y >= 58)&&(pos_p2_y<=79)) {
 			pos_p2_x = Gosu::random(850, 1580);
 			pos_p2_y = Gosu::random(20, 850);
 		}
-		
+		//Tür 2
+		if ((pos_p2_x >= 1433) && (pos_p2_x <= 1461) && (pos_p2_y >= 702) && (pos_p2_y <= 772)) {
+			pos_p2_x = Gosu::random(850, 1580);
+			pos_p2_y = Gosu::random(20, 850);
+		}
 
 		//Schuss Student
 		bool test = false;
@@ -366,7 +379,7 @@ public:
 
 		//Hit Abfrage für Barriere
 		//Student
-		for (int i=0;i<=projektile_s.size();i++)
+		for (int i=0;i<projektile_s.size();i++)
 		{
 			if((projektile_s.at(i).pos_pro_x>775)&&(projektile_s.at(i).pos_pro_y>t_y_pos)&&(projektile_s.at(i).pos_pro_y<t_y_pos+120))
 			{
@@ -375,7 +388,7 @@ public:
 		}
 		
 		//Dozent
-		for (int i = 0; i <= projektile_d.size(); i++)
+		for (int i = 0; i < projektile_d.size(); i++)
 		{
 			if ((projektile_d.at(i).pos_pro_x < 825) && (projektile_d.at(i).pos_pro_y > t_y_pos) && (projektile_d.at(i).pos_pro_y < t_y_pos + 120))
 			{
