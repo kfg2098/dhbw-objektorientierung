@@ -390,6 +390,10 @@ public:
 			}
 		}
 
+
+		//Hit Abfrage für Projektile treffen sich gegenseitig
+		// muss ja jedes Projektil abfragen, daher keine Ahnung :D
+
 		//Game restart mit Taste R
 		if (gameover && (input().down(Gosu::ButtonName::KB_R)||input().down(Gosu::ButtonName::GP_0_BUTTON_1)||input().down(Gosu::ButtonName::GP_1_BUTTON_1))) {
 			gameover = false;
