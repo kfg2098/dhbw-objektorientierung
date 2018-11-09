@@ -101,9 +101,10 @@ public:
 		bild_hg.draw_rot(0, 0, -10, 0, 0, 0); //Hintergrund Zpos -10 als unterstes Bild
 
 		tuer.draw_rot(600, 810, -5, 0, 0, 0,0.1,0.1);//Teleporter für Student
+		tuer.draw_rot(100, 150, -5, 0, 0, 0, 0.1, 0.1);//Teleporter für Student
 		tuer.draw_rot(850, 0, -5, 0, 0, 0, 0.1, 0.1);//Teleporter für Dozent
-		
-		
+		tuer.draw_rot(1400, 700, -5, 0, 0, 0, 0.1, 0.1);//Teleporter für Dozent
+
 		
 		//Lebensanzeige Student
 		Gosu::Graphics::draw_rect(400, 20, 200, 30, Gosu::Color::GRAY, -2);
@@ -366,7 +367,7 @@ public:
 
 		//Hit Abfrage für Barriere
 		//Student
-		for (int i=0;i<=projektile_s.size();i++)
+		for (int i=0;i<projektile_s.size();i++)
 		{
 			if((projektile_s.at(i).pos_pro_x>775)&&(projektile_s.at(i).pos_pro_y>t_y_pos)&&(projektile_s.at(i).pos_pro_y<t_y_pos+120))
 			{
@@ -375,7 +376,7 @@ public:
 		}
 		
 		//Dozent
-		for (int i = 0; i <= projektile_d.size(); i++)
+		for (int i = 0; i < projektile_d.size(); i++)
 		{
 			if ((projektile_d.at(i).pos_pro_x < 825) && (projektile_d.at(i).pos_pro_y > t_y_pos) && (projektile_d.at(i).pos_pro_y < t_y_pos + 120))
 			{
